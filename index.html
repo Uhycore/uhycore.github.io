@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Aril</title>
+    <title>Modern CV - Aril</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 p-6 font-sans leading-relaxed text-gray-800">
 
     <!-- Header Section -->
-    <header class="bg-white p-8 rounded-lg shadow-lg mb-8">
-        <div class="flex items-center space-x-4">
-            <img src="profile.jpg" alt="Profile Photo" class="w-24 h-24 rounded-full">
+    <header class="bg-white p-8 rounded-lg shadow-lg mb-8 relative">
+        <div class="absolute -top-10 -right-10 bg-blue-500 w-32 h-32 rounded-full opacity-20"></div>
+        <div class="flex items-center space-x-6">
+            <img src="profile.jpg" alt="Profile Photo" class="w-28 h-28 rounded-full border-4 border-blue-500">
             <div>
                 <h1 class="text-4xl font-bold">Aril</h1>
                 <p class="text-lg text-gray-600">Full Stack Developer</p>
-                <p class="text-gray-500">Email: aril@example.com | Phone: +62 123-456-7890 | Location: Indonesia</p>
+                <p class="text-gray-500">aril@example.com | +62 123-456-7890 | Indonesia</p>
             </div>
         </div>
     </header>
 
     <!-- About Section -->
-    <section class="bg-white p-8 rounded-lg shadow-lg mb-8">
+    <section class="bg-white p-8 rounded-lg shadow-lg mb-8 relative">
+        <div class="absolute top-0 left-0 bg-blue-100 w-16 h-16 -translate-x-8 -translate-y-8 rotate-45"></div>
         <h2 class="text-3xl font-semibold mb-4">About Me</h2>
         <p>
             Full-stack developer dengan pengalaman lebih dari 3 tahun dalam pengembangan aplikasi web. Menguasai PHP, Tailwind CSS, dan framework MVC, serta memiliki kemampuan dalam pengembangan front-end dan back-end. Berfokus pada pembuatan sistem yang efisien dan pengalaman pengguna yang responsif.
@@ -35,7 +37,7 @@
         <div class="mb-6">
             <h3 class="text-2xl font-semibold">Full Stack Developer</h3>
             <p class="text-gray-500">Tech Company | Jan 2023 - Present</p>
-            <ul class="list-disc list-inside">
+            <ul class="list-disc list-inside text-gray-700">
                 <li>Developed scalable applications using PHP and Tailwind CSS.</li>
                 <li>Implemented authentication, authorization, and CRUD functionalities.</li>
                 <li>Collaborated with the design team to enhance UI/UX.</li>
@@ -45,72 +47,77 @@
         <div>
             <h3 class="text-2xl font-semibold">Web Developer Intern</h3>
             <p class="text-gray-500">Startup Company | Jun 2022 - Dec 2022</p>
-            <ul class="list-disc list-inside">
+            <ul class="list-disc list-inside text-gray-700">
                 <li>Worked on frontend and backend tasks using JavaScript and PHP.</li>
                 <li>Assisted in database management and maintenance.</li>
             </ul>
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section class="bg-white p-8 rounded-lg shadow-lg mb-8">
-        <h2 class="text-3xl font-semibold mb-4">Education</h2>
-        
-        <div>
-            <h3 class="text-2xl font-semibold">Institut Teknologi Adhi Tama Surabaya (ITATS)</h3>
-            <p class="text-gray-500">Bachelor of Information Technology | 2020 - 2024</p>
-            <p>GPA: 3.75</p>
-        </div>
-    </section>
-
     <!-- Skills Section -->
     <section class="bg-white p-8 rounded-lg shadow-lg mb-8">
         <h2 class="text-3xl font-semibold mb-4">Skills</h2>
-        <div class="grid grid-cols-2 gap-4">
-            <ul>
-                <li>PHP</li>
-                <li>Tailwind CSS</li>
-                <li>JavaScript</li>
-                <li>HTML & CSS</li>
-            </ul>
-            <ul>
-                <li>MySQL</li>
-                <li>Git</li>
-                <li>Laravel</li>
-                <li>REST APIs</li>
-            </ul>
+        <div class="grid grid-cols-2 gap-6">
+            <div>
+                <h3 class="text-xl font-medium">Technical Skills</h3>
+                <ul>
+                    <li class="flex items-center">
+                        <span class="w-1/3">PHP</span>
+                        <div class="w-2/3 bg-gray-200 h-3 rounded-full overflow-hidden">
+                            <div class="bg-blue-500 h-3 w-11/12"></div>
+                        </div>
+                    </li>
+                    <li class="flex items-center mt-2">
+                        <span class="w-1/3">Tailwind CSS</span>
+                        <div class="w-2/3 bg-gray-200 h-3 rounded-full overflow-hidden">
+                            <div class="bg-blue-500 h-3 w-10/12"></div>
+                        </div>
+                    </li>
+                    <li class="flex items-center mt-2">
+                        <span class="w-1/3">JavaScript</span>
+                        <div class="w-2/3 bg-gray-200 h-3 rounded-full overflow-hidden">
+                            <div class="bg-blue-500 h-3 w-9/12"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-medium">Soft Skills</h3>
+                <ul>
+                    <li class="flex items-center">
+                        <span class="w-1/3">Problem-Solving</span>
+                        <div class="w-2/3 bg-gray-200 h-3 rounded-full overflow-hidden">
+                            <div class="bg-green-500 h-3 w-11/12"></div>
+                        </div>
+                    </li>
+                    <li class="flex items-center mt-2">
+                        <span class="w-1/3">Teamwork</span>
+                        <div class="w-2/3 bg-gray-200 h-3 rounded-full overflow-hidden">
+                            <div class="bg-green-500 h-3 w-10/12"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </section>
 
     <!-- Languages Section -->
     <section class="bg-white p-8 rounded-lg shadow-lg mb-8">
         <h2 class="text-3xl font-semibold mb-4">Languages</h2>
-        <ul class="list-disc list-inside">
-            <li>Indonesian (Native)</li>
-            <li>English (Fluent)</li>
-            <li>Japanese (Basic)</li>
+        <ul>
+            <li class="flex items-center">
+                <span class="w-1/3">Indonesian</span>
+                <div class="w-2/3 bg-gray-200 h-3 rounded-full overflow-hidden">
+                    <div class="bg-red-500 h-3 w-full"></div>
+                </div>
+            </li>
+            <li class="flex items-center mt-2">
+                <span class="w-1/3">English</span>
+                <div class="w-2/3 bg-gray-200 h-3 rounded-full overflow-hidden">
+                    <div class="bg-red-500 h-3 w-10/12"></div>
+                </div>
+            </li>
         </ul>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="bg-white p-8 rounded-lg shadow-lg mb-8">
-        <h2 class="text-3xl font-semibold mb-4">Projects</h2>
-        
-        <div class="mb-4">
-            <h3 class="text-2xl font-semibold">Spotify Clone Web App</h3>
-            <p class="text-gray-600">A web-based music streaming app developed using PHP and Tailwind CSS with features for playlist management, user authentication, and song search.</p>
-        </div>
-        
-        <div>
-            <h3 class="text-2xl font-semibold">TPQ Registration System</h3>
-            <p class="text-gray-600">Developed a PHP-based system for TPQ registration, enabling user management, role assignment, and registration data handling.</p>
-        </div>
-    </section>
-
-    <!-- References Section -->
-    <section class="bg-white p-8 rounded-lg shadow-lg">
-        <h2 class="text-3xl font-semibold mb-4">References</h2>
-        <p>Available upon request</p>
     </section>
 
 </body>
