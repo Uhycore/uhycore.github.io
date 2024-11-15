@@ -6,66 +6,112 @@
     <title>CV Aril</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 p-6">
+<body class="bg-gray-100 p-6 font-sans leading-relaxed text-gray-800">
 
     <!-- Header Section -->
-    <header class="bg-white p-6 rounded-lg shadow-lg mb-8">
-        <h1 class="text-3xl font-bold text-gray-800">Aril</h1>
-        <p class="text-lg text-gray-600">Full Stack Developer</p>
-        <p class="text-gray-500">Email: aril@example.com | Phone: +62 123-456-7890 | Location: Indonesia</p>
+    <header class="bg-white p-8 rounded-lg shadow-lg mb-8">
+        <div class="flex items-center space-x-4">
+            <img src="profile.jpg" alt="Profile Photo" class="w-24 h-24 rounded-full">
+            <div>
+                <h1 class="text-4xl font-bold">Aril</h1>
+                <p class="text-lg text-gray-600">Full Stack Developer</p>
+                <p class="text-gray-500">Email: aril@example.com | Phone: +62 123-456-7890 | Location: Indonesia</p>
+            </div>
+        </div>
     </header>
 
     <!-- About Section -->
-    <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">About Me</h2>
-        <p class="text-gray-600">
-            Seorang full-stack developer yang berdedikasi dengan pengalaman dalam pengembangan web berbasis PHP dan Tailwind CSS. Memiliki minat tinggi dalam implementasi sistem yang efektif dan efisien.
+    <section class="bg-white p-8 rounded-lg shadow-lg mb-8">
+        <h2 class="text-3xl font-semibold mb-4">About Me</h2>
+        <p>
+            Full-stack developer dengan pengalaman lebih dari 3 tahun dalam pengembangan aplikasi web. Menguasai PHP, Tailwind CSS, dan framework MVC, serta memiliki kemampuan dalam pengembangan front-end dan back-end. Berfokus pada pembuatan sistem yang efisien dan pengalaman pengguna yang responsif.
         </p>
     </section>
 
     <!-- Experience Section -->
-    <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Experience</h2>
+    <section class="bg-white p-8 rounded-lg shadow-lg mb-8">
+        <h2 class="text-3xl font-semibold mb-4">Experience</h2>
         
-        <div class="mb-4">
-            <h3 class="text-xl font-semibold text-gray-800">Full Stack Developer</h3>
-            <p class="text-gray-500">Company Name | Jan 2023 - Present</p>
-            <ul class="list-disc list-inside text-gray-600">
-                <li>Developed responsive web applications using PHP and Tailwind CSS.</li>
-                <li>Integrated user authentication and role-based access control.</li>
+        <div class="mb-6">
+            <h3 class="text-2xl font-semibold">Full Stack Developer</h3>
+            <p class="text-gray-500">Tech Company | Jan 2023 - Present</p>
+            <ul class="list-disc list-inside">
+                <li>Developed scalable applications using PHP and Tailwind CSS.</li>
+                <li>Implemented authentication, authorization, and CRUD functionalities.</li>
+                <li>Collaborated with the design team to enhance UI/UX.</li>
+            </ul>
+        </div>
+        
+        <div>
+            <h3 class="text-2xl font-semibold">Web Developer Intern</h3>
+            <p class="text-gray-500">Startup Company | Jun 2022 - Dec 2022</p>
+            <ul class="list-disc list-inside">
+                <li>Worked on frontend and backend tasks using JavaScript and PHP.</li>
+                <li>Assisted in database management and maintenance.</li>
             </ul>
         </div>
     </section>
 
     <!-- Education Section -->
-    <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Education</h2>
+    <section class="bg-white p-8 rounded-lg shadow-lg mb-8">
+        <h2 class="text-3xl font-semibold mb-4">Education</h2>
         
         <div>
-            <h3 class="text-xl font-semibold text-gray-800">Institut Teknologi Adhi Tama Surabaya (ITATS)</h3>
+            <h3 class="text-2xl font-semibold">Institut Teknologi Adhi Tama Surabaya (ITATS)</h3>
             <p class="text-gray-500">Bachelor of Information Technology | 2020 - 2024</p>
+            <p>GPA: 3.75</p>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section class="bg-white p-6 rounded-lg shadow-lg mb-8">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Skills</h2>
-        <ul class="grid grid-cols-2 gap-4 text-gray-600">
-            <li>PHP</li>
-            <li>Tailwind CSS</li>
-            <li>JavaScript</li>
-            <li>HTML & CSS</li>
-            <li>MySQL</li>
-            <li>Git</li>
+    <section class="bg-white p-8 rounded-lg shadow-lg mb-8">
+        <h2 class="text-3xl font-semibold mb-4">Skills</h2>
+        <div class="grid grid-cols-2 gap-4">
+            <ul>
+                <li>PHP</li>
+                <li>Tailwind CSS</li>
+                <li>JavaScript</li>
+                <li>HTML & CSS</li>
+            </ul>
+            <ul>
+                <li>MySQL</li>
+                <li>Git</li>
+                <li>Laravel</li>
+                <li>REST APIs</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section class="bg-white p-8 rounded-lg shadow-lg mb-8">
+        <h2 class="text-3xl font-semibold mb-4">Languages</h2>
+        <ul class="list-disc list-inside">
+            <li>Indonesian (Native)</li>
+            <li>English (Fluent)</li>
+            <li>Japanese (Basic)</li>
         </ul>
     </section>
 
-    <!-- Contact Section -->
-    <footer class="bg-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Contact</h2>
-        <p class="text-gray-600">Email: aril@example.com</p>
-        <p class="text-gray-600">Phone: +62 123-456-7890</p>
-    </footer>
+    <!-- Projects Section -->
+    <section class="bg-white p-8 rounded-lg shadow-lg mb-8">
+        <h2 class="text-3xl font-semibold mb-4">Projects</h2>
+        
+        <div class="mb-4">
+            <h3 class="text-2xl font-semibold">Spotify Clone Web App</h3>
+            <p class="text-gray-600">A web-based music streaming app developed using PHP and Tailwind CSS with features for playlist management, user authentication, and song search.</p>
+        </div>
+        
+        <div>
+            <h3 class="text-2xl font-semibold">TPQ Registration System</h3>
+            <p class="text-gray-600">Developed a PHP-based system for TPQ registration, enabling user management, role assignment, and registration data handling.</p>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section class="bg-white p-8 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-semibold mb-4">References</h2>
+        <p>Available upon request</p>
+    </section>
 
 </body>
 </html>
