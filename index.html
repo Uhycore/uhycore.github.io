@@ -1,114 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern CV - Aril</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        .progress-bar {
-            animation: fillBar 2s ease-in-out forwards;
-        }
-        @keyframes fillBar {
-            from {
-                width: 0%;
-            }
-            to {
-                width: var(--progress-width);
-            }
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gradient-to-b from-gray-50 to-gray-100 font-sans leading-relaxed text-gray-800">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-lg">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-blue-600 hover:text-blue-800">Aril's CV</a>
-            <ul class="hidden lg:flex space-x-8 font-medium">
-                <li><a href="#about" class="text-gray-700 hover:text-blue-500 hover:underline">About</a></li>
-                <li><a href="#experience" class="text-gray-700 hover:text-blue-500 hover:underline">Experience</a></li>
-                <li><a href="#skills" class="text-gray-700 hover:text-blue-500 hover:underline">Skills</a></li>
-                <li><a href="#languages" class="text-gray-700 hover:text-blue-500 hover:underline">Languages</a></li>
-            </ul>
-            <button id="menu-toggle" class="block lg:hidden text-gray-700 hover:text-blue-500">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
-        <div id="mobile-menu" class="hidden bg-white p-4 lg:hidden">
-            <ul class="space-y-4 font-medium">
-                <li><a href="#about" class="block text-gray-700 hover:text-blue-500 hover:underline">About</a></li>
-                <li><a href="#experience" class="block text-gray-700 hover:text-blue-500 hover:underline">Experience</a></li>
-                <li><a href="#skills" class="block text-gray-700 hover:text-blue-500 hover:underline">Skills</a></li>
-                <li><a href="#languages" class="block text-gray-700 hover:text-blue-500 hover:underline">Languages</a></li>
-            </ul>
-        </div>
-    </nav>
+<body class="bg-gray-50 font-sans text-gray-800">
 
-    <!-- Container -->
-    <div class="container mx-auto p-6">
-        <!-- Header -->
-        <header class="bg-white p-6 rounded-lg shadow-xl flex items-center space-x-8">
-            <img src="images/profile.jpg" alt="Profile Photo" class="w-32 h-32 rounded-full border-4 border-blue-500 transition-transform transform hover:scale-105">
+    <!-- Main Container -->
+    <div class="grid grid-cols-12 min-h-screen">
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="fixed top-4 left-4 z-50 md:hidden p-2 rounded bg-cyan-500 text-white shadow">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Left Sidebar -->
+        <aside id="sidebar" class="col-span-12 md:col-span-3 bg-white shadow-md border-r border-gray-200 h-screen sticky top-0 p-6 flex flex-col justify-between transform transition-transform duration-300 ease-in-out md:translate-x-0 -translate-x-full">
+            <!-- Profile Info -->
             <div>
-                <h1 class="text-4xl font-bold text-gray-800">Aril</h1>
-                <p class="text-lg text-gray-600">Full Stack Developer</p>
-                <p class="text-gray-500">aril@example.com | +62 123-456-7890 | Indonesia</p>
+                <img src="images/profile.jpg" alt="Profile Photo" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-cyan-500">
+                <h1 class="text-center text-2xl font-bold text-gray-800">Aril</h1>
+                <p class="text-center text-gray-600 text-sm">Full Stack Developer</p>
+                <nav class="mt-8">
+                    <ul class="space-y-4 text-center">
+                        <li><a href="#about" class="text-gray-700 hover:text-cyan-500 hover:underline">About</a></li>
+                        <li><a href="#work-experience" class="text-gray-700 hover:text-cyan-500 hover:underline">Experience</a></li>
+                        <li><a href="#skills" class="text-gray-700 hover:text-cyan-500 hover:underline">Skills</a></li>
+                        <li><a href="#contact" class="text-gray-700 hover:text-cyan-500 hover:underline">Contact</a></li>
+                    </ul>
+                </nav>
             </div>
-        </header>
+            <!-- Footer -->
+            <footer class="text-center text-sm text-gray-500">
+                <p>&copy; 2024 Aril</p>
+                <p>Built with ❤️ using Tailwind CSS</p>
+            </footer>
+        </aside>
 
-        <!-- Sections -->
-        <section id="about" class="bg-white mt-6 p-6 rounded-lg shadow-lg">
-            <h2 class="text-3xl font-semibold text-blue-600 mb-4">About Me</h2>
-            <p>
-                Full-stack developer dengan pengalaman lebih dari 3 tahun dalam pengembangan aplikasi web. Menguasai PHP, Tailwind CSS, dan framework MVC, serta memiliki kemampuan dalam pengembangan front-end dan back-end. Berfokus pada pembuatan sistem yang efisien dan pengalaman pengguna yang responsif.
-            </p>
-        </section>
+        <!-- Right Content -->
+        <main class="col-span-12 md:col-span-9 bg-gray-50 overflow-y-auto p-6 space-y-8">
+            <!-- About Section -->
+            <section id="about" class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-cyan-500 mb-4">About Me</h2>
+                <p>
+                    Full-stack developer dengan pengalaman lebih dari 3 tahun dalam pengembangan aplikasi web.
+                </p>
+            </section>
 
-        <!-- Experience -->
-        <section id="experience" class="bg-white mt-6 p-6 rounded-lg shadow-lg">
-            <h2 class="text-3xl font-semibold text-blue-600 mb-4">Experience</h2>
-            <div>
-                <h3 class="text-2xl font-semibold text-gray-800">Full Stack Developer</h3>
-                <p class="text-gray-500">Tech Company | Jan 2023 - Present</p>
-                <ul class="list-disc list-inside mt-2">
-                    <li>Developed scalable applications using PHP and Tailwind CSS.</li>
-                    <li>Implemented authentication, authorization, and CRUD functionalities.</li>
-                </ul>
-            </div>
-        </section>
+            <!-- Experience Section -->
+            <section id="work-experience" class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-cyan-500 mb-4">Experience</h2>
+                <div class="mb-6">
+                    <h3 class="text-2xl font-semibold text-gray-800">Full Stack Developer</h3>
+                    <p class="text-gray-500">Tech Company | Jan 2023 - Present</p>
+                    <ul class="list-disc list-inside mt-2">
+                        <li>Developed scalable applications using PHP and Tailwind CSS.</li>
+                        <li>Implemented authentication, authorization, and CRUD functionalities.</li>
+                        <li>Collaborated with cross-functional teams to deliver on-time releases.</li>
+                    </ul>
+                </div>
+            </section>
 
-        <!-- Skills -->
-        <section id="skills" class="bg-white mt-6 p-6 rounded-lg shadow-lg">
-            <h2 class="text-3xl font-semibold text-blue-600 mb-4">Skills</h2>
-            <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                    <h3 class="text-xl font-medium text-gray-800">Technical Skills</h3>
+            <!-- Skills Section -->
+            <section id="skills" class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-cyan-500 mb-4">Skills</h2>
+                <div class="space-y-4">
                     <div>
-                        <p>PHP</p>
-                        <div class="w-full bg-gray-200 rounded-full h-4 mt-1 relative">
-                            <div class="bg-blue-500 h-4 rounded-full progress-bar" style="--progress-width: 90%;"></div>
+                        <h3 class="text-lg font-semibold text-gray-800">PHP</h3>
+                        <div class="w-full bg-gray-200 rounded-full h-4">
+                            <div class="bg-cyan-500 h-4 rounded-full w-[90%]"></div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-cyan-500 mb-4">Contact</h2>
+                <p>Email: <a href="mailto:aril@example.com" class="text-cyan-500 hover:underline">aril@example.com</a></p>
+            </section>
+        </main>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-4 mt-6 text-center">
-        <p>&copy; 2024 Aril | Built with ❤️ using Tailwind CSS</p>
-    </footer>
-
-    <!-- Script -->
     <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-translate-x-full');
         });
     </script>
+
 </body>
+
 </html>
