@@ -122,7 +122,7 @@
                     <li class="menu-title text-lg font-bold text-gray-700 flex items-center">
                         <i class="fas fa-video mr-2"></i> <span>🎬 Editing Zone 🎨</span>
                     </li>
-                
+
                     <!-- Software Editing -->
                     <li class="menu-title mt-2">
                         <span>Software</span>
@@ -137,7 +137,7 @@
                             <i class="fas fa-cut mr-2"></i> CapCut
                         </a>
                     </li>
-                
+
                     <!-- Project Types -->
                     <li class="menu-title mt-4">
                         <span>Projects</span>
@@ -163,7 +163,7 @@
                         </a>
                     </li>
                 </div>
-                
+
 
 
                 <div class="divider"></div>
@@ -190,12 +190,14 @@
                     </h2>
                     <div class="bg-blue-50 p-4 rounded-lg">
                         <p class="text-blue-800">
+                            Coding → Gaming → Editing (opsional) → Eating → Sholat → Sleep → Repeat 🛠️🎮🎬🍕🙏🛌<br><br>
                             Full Stack Web Developer | Penggiat Laravel & Database | Problem Solver<br>
                             Sedang membangun fondasi aplikasi web dengan Laravel dan database, satu query pada satu
                             waktu. 🚀<br>
                             Pengen e seh jadi Full Stack Mobile Developer!!. 😁🫳<br><br>
-                            Maen ta?, ayo seh, ID ML & Genshin ada di atas! 🎮🔥
+                            Maen ta?, ayo seh, ID ML & Genshin ada di atas/samping! 🎮🔥
                         </p>
+                        
                     </div>
                 </section>
 
@@ -239,7 +241,7 @@
                                         clip-rule="evenodd" />
                                 </svg>
                             </div>
-                            <div class="timeline-end md:text-end mb-10 bg-blue-50 p-3 rounded-lg">
+                            <div class="timeline-end mb-10 bg-blue-50 p-3 rounded-lg text-left">
                                 <time class="font-mono italic text-blue-600">2024 - Present</time>
                                 <div class="text-lg font-black text-blue-800">Mahasiswa - Full Stack Developer (Laravel
                                     & PHP)</div>
@@ -256,7 +258,7 @@
                                         clip-rule="evenodd" />
                                 </svg>
                             </div>
-                            <div class="timeline-end mb-10 bg-blue-50 p-3 rounded-lg">
+                            <div class="timeline-end mb-10 bg-blue-50 p-3 rounded-lg text-left">
                                 <time class="font-mono italic text-blue-600">2024</time>
                                 <div class="text-lg font-black text-blue-800">Web Developer Intern</div>
                                 Digital Solutions Ltd.
@@ -264,13 +266,14 @@
                             <hr class="border-blue-200" />
                         </div>
                     </div>
+
                 </section>
 
 
                 <!-- Contact Section -->
                 <section id="contact" data-aos="fade-up">
                     <h2 class="text-3xl font-bold text-primary mb-4">
-                        <i class="fas fa-paper-plane mr-2"></i> Connection.establish()
+                        <i class="fas fa-paper-plane mr-2"></i> Chat.WhatsApp()
                     </h2>
                     <div class="card bg-blue-50 shadow-lg">
                         <div class="card-body">
@@ -280,13 +283,13 @@
                                     <input id="name" type="text" placeholder="Enter your name"
                                         class="input input-bordered input-primary" />
                                 </div>
-                                <div class="form-control">
+                                <!-- <div class="form-control">
                                     <label class="label text-blue-800">Email Protocol</label>
                                     <input id="email" type="email" placeholder="your.email@protocol.com"
                                         class="input input-bordered input-primary" />
-                                </div>
+                                </div> -->
                                 <div class="form-control">
-                                    <label class="label text-blue-800">Message Payload</label>
+                                    <label class="label text-blue-800">Message</label>
                                     <textarea id="message" class="textarea textarea-bordered textarea-primary h-24"
                                         placeholder="Type your message here..."></textarea>
                                 </div>
@@ -326,12 +329,12 @@
     <script>
         function sendMessage() {
             var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
+            // var email = document.getElementById('email').value;
             var message = document.getElementById('message').value;
 
             // Menggunakan tanda bintang (*) untuk membuat teks bold di WhatsApp
             var fullMessage = "*Name:* " + name + "\n" +
-                "*Email:* " + email + "\n" +
+                // "*Email:* " + email + "\n" +
                 "*Message:* " + message;
 
             var encodedMessage = encodeURIComponent(fullMessage);
