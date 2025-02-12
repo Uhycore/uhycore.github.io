@@ -10,38 +10,10 @@
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
+    <link rel="stylesheet" href="styles.css">
 
-        body {
-            background: linear-gradient(135deg, #e6f3ff 0%, #d1e8ff 100%);
-            font-family: 'Consolas', monospace;
-        }
-
-        .pixel-border {
-            border: 2px solid #4a90e2;
-            box-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
-        }
-
-        /* .game-cursor {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%230066cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>'), auto;
-        } */
-    </style>
     <script>
-        // Custom Tailwind configuration for more vibrant colors
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#0066cc',
-                        secondary: '#4a90e2',
-                        accent: '#00b4d8'
-                    }
-                }
-            }
-        }
+        
     </script>
 </head>
 
@@ -316,39 +288,8 @@
         </div>
     </div>
 
-    <!-- AOS Initialization Script -->
-    <script>
-        AOS.init({
-            duration: 1000,
-            easing: 'ease-in-out',
-            once: false,
-            mirror: true
-        });
-    </script>
+    <script src="scripts.js"></script>
 
-    <!-- WhatsApp Message Script -->
-    <script>
-        function sendMessage() {
-            var name = document.getElementById('name').value;
-            // var email = document.getElementById('email').value;
-            var message = document.getElementById('message').value;
-
-            // Menggunakan tanda bintang (*) untuk membuat teks bold di WhatsApp
-            var fullMessage = "*Name:* " + name + "\n" +
-                // "*Email:* " + email + "\n" +
-                "*Message:* " + message;
-
-            var encodedMessage = encodeURIComponent(fullMessage);
-
-            var whatsappLink = "https://wa.me/6285647234364?text=" + encodedMessage;
-
-            window.open(whatsappLink, '_blank');
-        }
-    </script>
-    <!-- Chatbase Script -->
-    <script>
-        (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "39QWPWrjQZXG1A_4Mj_j6"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
-    </script>
 </body>
 
 </html>
