@@ -70,42 +70,4 @@ tailwind.config = {
 }
 
 
-// track lokasi
-async function saveLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(async position => {
-            let locationData = {
-                timestamp: new Date().toISOString(),
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude
-            };
 
-            // Convert location data to a string
-            let locationText = `Timestamp: ${locationData.timestamp}\nLatitude: ${locationData.latitude}\nLongitude: ${locationData.longitude}`;
-
-            try {
-                // Request a handle to the file
-                const handle = await window.showSaveFilePicker({
-                    suggestedName: 'lokasi.txt',
-                    types: [{
-                        description: 'Text Files',
-                        accept: {'text/plain': ['.txt']}
-                    }]
-                });
-
-                // Create a writable stream
-                const writable = await handle.createWritable();
-
-                // Write the location data to the file
-                await writable.write(locationText);
-
-                // Close the file and write the contents to disk
-                await writable.close();
-
-                console.log('Location saved successfully.');
-            } catch (error) {
-                console.error('Error saving location:', error);
-            }
-        });
-    }
-}
