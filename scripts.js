@@ -68,3 +68,38 @@ tailwind.config = {
         }
     }
 }
+
+
+// track lokasi
+async function saveLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(async position => {
+            let locationData = {
+                timestamp: new Date().toISOString(),
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            };
+
+            const options = {
+                types: [{
+                    description: 'JSON Files',
+                    accept: {
+                        'application/json': ['.json']
+                    }
+                }],
+                suggestedName: 'lokasi.json'
+            };
+
+            try {
+                const handle = await window.showSaveFilePicker(options);
+                const writable = await handle.createWritable();
+                await writable.write(JSON.stringify(locationData, null, 2));
+                await writable.close();
+                console.log('Location saved successfully.');
+            } catch (error) {
+                console.error('Error saving location:', error);
+            }
+        });
+    }
+}
+
