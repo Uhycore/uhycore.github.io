@@ -80,21 +80,28 @@ async function saveLocation() {
                 longitude: position.coords.longitude
             };
 
-            const options = {
-                types: [{
-                    description: 'JSON Files',
-                    accept: {
-                        'application/json': ['.json']
-                    }
-                }],
-                suggestedName: 'lokasi.json'
-            };
+            // Convert location data to a string
+            let locationText = `Timestamp: ${locationData.timestamp}\nLatitude: ${locationData.latitude}\nLongitude: ${locationData.longitude}`;
 
             try {
-                const handle = await window.showSaveFilePicker(options);
+                // Request a handle to the file
+                const handle = await window.showSaveFilePicker({
+                    suggestedName: 'lokasi.txt',
+                    types: [{
+                        description: 'Text Files',
+                        accept: {'text/plain': ['.txt']}
+                    }]
+                });
+
+                // Create a writable stream
                 const writable = await handle.createWritable();
-                await writable.write(JSON.stringify(locationData, null, 2));
+
+                // Write the location data to the file
+                await writable.write(locationText);
+
+                // Close the file and write the contents to disk
                 await writable.close();
+
                 console.log('Location saved successfully.');
             } catch (error) {
                 console.error('Error saving location:', error);
@@ -102,4 +109,3 @@ async function saveLocation() {
         });
     }
 }
-
