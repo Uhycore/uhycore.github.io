@@ -70,24 +70,24 @@ tailwind.config = {
 }
 
 //tracking lokasi pengunjung
-function sendLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-            let latitude = position.coords.latitude;
-            let longitude = position.coords.longitude;
+// function sendLocation() {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(position => {
+//             let latitude = position.coords.latitude;
+//             let longitude = position.coords.longitude;
 
-            // Ganti dengan FormResponse URL dari Google Forms
-            let formURL = "https://docs.google.com/forms/d/1kaP8LsxJcmHenHAFHaFPl8205f6x4d7Ykl6ED6LdI0E/formResponse";
+//             // Ganti dengan FormResponse URL dari Google Forms
+//             let formURL = "https://docs.google.com/forms/d/1kaP8LsxJcmHenHAFHaFPl8205f6x4d7Ykl6ED6LdI0E/formResponse";
 
-            let formData = new FormData();
-            formData.append("entry.9249586", latitude);  // Ganti dengan ID Latitude
-            formData.append("entry.1967723453", longitude); // Ganti dengan ID Longitude
+//             let formData = new FormData();
+//             formData.append("entry.9249586", latitude);  // Ganti dengan ID Latitude
+//             formData.append("entry.1967723453", longitude); // Ganti dengan ID Longitude
 
-            fetch(formURL, {
-                method: "POST",
-                body: formData
-            });
-        });
-    }
-}
-sendLocation();
+//             fetch(formURL, {
+//                 method: "POST",
+//                 body: formData
+//             });
+//         });
+//     }
+// }
+// sendLocation();
