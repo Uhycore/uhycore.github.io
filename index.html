@@ -3,34 +3,47 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Aril | Backend Developer & Network Administrator</title>
 
     <!-- Tailwind + Font Awesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <!-- Inter font (clean & modern) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: { inter: ['Inter', 'ui-sans-serif', 'system-ui'] },
                     colors: {
                         primary: '#3b82f6',
-                        secondary: '#1e40af',
-                        accent: '#06b6d4',
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'slide-up': 'slideUp 0.6s ease-out',
-                        'float': 'float 3s ease-in-out infinite',
-                    },
+                        ink: '#0f172a'
+                    }
                 }
             }
         }
     </script>
 
     <style>
-        /* ===== Animations ===== */
+        /* Biar ukuran elemen selalu ngitung padding (hapus potensi overflow) */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        /* Kunci lebar halaman & matiin horizontal scroll */
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* ===== Animations (soft only) ===== */
         @keyframes fadeIn {
             from {
                 opacity: 0
@@ -41,50 +54,15 @@
             }
         }
 
-        @keyframes slideUp {
-            from {
-                transform: translateY(30px);
-                opacity: 0
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1
-            }
+        .animate-fade {
+            animation: fadeIn .5s ease-out both
         }
 
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0)
-            }
-
-            50% {
-                transform: translateY(-10px)
-            }
-        }
-
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)
-        }
-
-        .card-hover {
-            transition: all .3s ease
-        }
-
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 10px 10px -5px rgba(0, 0, 0, .04)
-        }
-
-        /* ===== Sidebar (Ubuntu vibe) ===== */
+        /* ===== Sidebar (TIDAK DIUBAH) ===== */
         aside {
             position: fixed;
             inset: 0 auto 0 0;
-            /* top:0; bottom:0; left:0 */
             width: 4.5rem;
-            /* sedikit > w-16 biar lega */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -94,7 +72,7 @@
             color: #fff;
             backdrop-filter: blur(12px);
             border-right: 1px solid rgba(255, 255, 255, .08);
-            z-index: 50;
+            z-index: 50
         }
 
         .dock-logo {
@@ -102,17 +80,16 @@
             color: #60a5fa
         }
 
-        /* tombol ikon */
         .dock-item {
             position: relative;
             width: 2.75rem;
             height: 2.75rem;
-            border-radius: 0.9rem;
+            border-radius: .9rem;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #e5e7eb;
-            transition: .2s ease;
+            transition: .2s ease
         }
 
         .dock-item:hover {
@@ -123,7 +100,7 @@
         .dock-item.active {
             color: #93c5fd;
             background: rgba(59, 130, 246, .12);
-            box-shadow: inset 0 0 0 1px rgba(59, 130, 246, .25);
+            box-shadow: inset 0 0 0 1px rgba(59, 130, 246, .25)
         }
 
         .dock-item.active::after {
@@ -133,10 +110,9 @@
             width: 6px;
             height: 6px;
             background: #60a5fa;
-            border-radius: 9999px;
+            border-radius: 9999px
         }
 
-        /* Tooltip */
         .dock-item .tip {
             position: absolute;
             left: 4.25rem;
@@ -158,57 +134,67 @@
             opacity: 1
         }
 
-        /* ===== Content offset (geser kanan supaya ga ketutup) ===== */
+        /* Content offset (ruang buat sidebar) */
         body {
-            padding-left: 4.5rem;
-            background: #f9fafb;
-            min-height: 100vh
+            padding-left: 4.5rem
         }
 
-        /* ===== Mobile: sidebar jadi bottom dock ===== */
-        @media (max-width:768px) {
+        /* Mobile: sidebar jadi bottom dock (TIDAK DIUBAH) */
+        @media (max-width: 768px) {
             aside {
-                top: auto;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                width: 100%;
+                position: fixed;
+                /* full lebar layar, nempel bawah */
+                inset: auto 0 0 0;
+                /* top:auto; right:0; bottom:0; left:0 */
+                width: 100dvw;
+                /* dynamic viewport (lebih akurat di mobile) */
+                max-width: 100dvw;
                 height: 5rem;
+                /* tinggi bar (sesuai punyamu) */
+
+                /* padding adaptif + aman notch (iPhone) */
+                padding: 0;
+                padding-left: max(12px, env(safe-area-inset-left));
+                padding-right: max(12px, env(safe-area-inset-right));
+
                 flex-direction: row;
-                justify-content: space-around;
-                padding: 0 .5rem;
+                justify-content: space-between;
+
                 border-right: none;
                 border-top: 1px solid rgba(255, 255, 255, .08);
+
+                /* pastikan gak meleber keluar */
+                overflow: hidden;
             }
 
             body {
                 padding-left: 0;
-                padding-bottom: 4.5rem
+                /* kasih ruang buat dock + safe area bottom */
+                padding-bottom: calc(5rem + env(safe-area-inset-bottom));
             }
 
-            /* kasih ruang buat dock */
             .dock-item {
                 width: 2.5rem;
                 height: 2.5rem;
-                border-radius: .8rem
+                border-radius: .8rem;
             }
 
+            /* Tooltip dimatiin di mobile biar gak makan lebar */
             .dock-item .tip {
-                display: none
+                display: none;
             }
 
             .dock-item.active::after {
-                display: none
+                display: none;
             }
         }
     </style>
 </head>
 
-<body class="min-h-screen">
-    <!-- ===== Sidebar ===== -->
+<body class="font-inter text-slate-800 bg-slate-50 min-h-screen selection:bg-indigo-600 selection:text-white">
+    <!-- ===== SIDEBAR (ASLI, tidak diubah) ===== -->
     <aside aria-label="Situs navigation">
         <div class="dock-logo hover:scale-110 transition-transform"><i class="fas fa-code"></i></div>
-
         <a href="#home" class="dock-item" aria-label="Home"><i class="fas fa-house text-xl"></i><span
                 class="tip">Home</span></a>
         <a href="#about" class="dock-item" aria-label="Tentang"><i class="fas fa-user text-xl"></i><span
@@ -223,573 +209,408 @@
                 class="tip">Contact</span></a>
     </aside>
 
-    <!-- ===== Hero ===== -->
-    <section id="home" class="gradient-bg min-h-screen flex items-center justify-center py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
-            <div class="mb-8">
-                <img src="/images/aril.jpg" alt="Profile"
-                    class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white shadow-lg"
-                    style="animation: float 3s ease-in-out infinite;">
+    <!-- ===== MAIN CONTENT ===== -->
+    <section id="home"
+        class="bg-gradient-to-br from-indigo-600 via-violet-600 to-fuchsia-600 min-h-[88vh] flex items-center py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-12 gap-10 items-center">
+            <!-- Kiri: teks -->
+            <div class="lg:col-span-6">
+                <p class="text-sm tracking-wide text-white/70 mb-4">Web Developer · Network Admin</p>
+                <h1 class="text-5xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+                    Hi, I'm <span class="text-yellow-300">Aril</span>
+                </h1>
+                <p class="text-lg text-white/85 mb-10 max-w-xl">
+                    Pengembangan backend yang cepat & jaringan yang stabil — simple, reliable, berdampak.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects"
+                        class="inline-flex items-center justify-center rounded-full bg-white text-blue-700 px-6 py-3 font-semibold hover:bg-blue-50 transition">
+                        Lihat Proyek Saya
+                    </a>
+                    <a href="#contact"
+                        class="inline-flex items-center justify-center rounded-full border-2 border-white text-white px-6 py-3 font-semibold hover:bg-white hover:text-blue-700 transition">
+                        Hubungi Saya
+                    </a>
+                </div>
             </div>
-            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">Hi, I'm <span class="text-yellow-300">Aril</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
-                Web Developer & Teknisi/Admin Jaringan
-            </p>
-            <p class="text-lg text-blue-200 mb-12 max-w-2xl mx-auto">
-                Pengembangan web, infrastruktur jaringan, dan pengalaman digital yang clean & berdampak.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#projects"
-                    class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors">Lihat
-                    Proyek Saya</a>
-                <a href="#contact"
-                    class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-colors">Hubungi
-                    Saya</a>
+
+            <!-- Kanan: foto besar (tanpa lingkaran) -->
+            <div class="lg:col-span-6">
+                <div class="relative">
+                    <!-- GANTI src ke file fotomu -->
+                    <img src="/images/aril_pu.png" alt="Aril"
+                        class="w-full h-[420px] sm:h-[520px] lg:h-[640px] object-cover rounded-3xl shadow-2xl ring-1 ring-white/15 bg-white/5" />
+                    <div
+                        class="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-t from-black/10 via-transparent to-transparent">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== About ===== -->
-    <section id="about" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Tentang Saya</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
-            </div>
 
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="animate-slide-up">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">
-                        <i class="fas fa-terminal text-blue-600 mr-3"></i>Profile.init()
-                    </h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        <strong>Web Developer | Teknisi/Admin Jaringan | Problem Solver</strong>
+
+    <!-- ===== SECTION WRAPPER helper ===== -->
+    <template id="__"></template>
+
+    <!-- ===== ABOUT (rapi & netral) ===== -->
+    <section id="about" class="py-24">
+        <div class="mx-auto max-w-6xl px-6 md:px-8">
+            <header class="mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold text-ink">Tentang Saya</h2>
+                <div class="mt-3 h-[2px] w-14 bg-indigo-600/80"></div>
+            </header>
+
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="space-y-5">
+                    <h3 class="text-lg font-semibold text-ink/90"><i
+                            class="fas fa-terminal text-indigo-600 mr-2"></i>Profile.init()</h3>
+                    <p class="text-slate-600"><strong>Web Developer | Teknisi/Admin Jaringan | Problem Solver</strong>
                     </p>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Fokus membangun aplikasi web tangguh (Laravel/PHP) dan memastikan infrastruktur jaringan stabil
-                        & aman.
-                    </p>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Routine: Coding → Network → Editing → Photography → Videography → Makan → Doa → Tidur → Repeat
-                        🛠️🌐🎬🍕🙏🛌
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Laravel
+                    <p class="text-slate-600">Fokus membangun aplikasi web tangguh (Laravel/PHP) dan memastikan
+                        infrastruktur jaringan stabil & aman.</p>
+                    <p class="text-slate-600">Routine: Coding → Network → Editing → Photography → Videography → Makan →
+                        Doa → Tidur → Repeat 🛠️🌐🎬🍕🙏🛌</p>
+
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span
+                            class="px-3 py-1 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200">Laravel
                             Expert</span>
-                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Network
+                        <span
+                            class="px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200">Network
                             Admin</span>
-                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">Network
+                        <span
+                            class="px-3 py-1 rounded-full text-xs font-medium bg-rose-50 text-rose-700 ring-1 ring-rose-200">Network
                             Engineer</span>
-                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Problem
+                        <span
+                            class="px-3 py-1 rounded-full text-xs font-medium bg-violet-50 text-violet-700 ring-1 ring-violet-200">Problem
                             Solver</span>
                         <span
-                            class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">Creative</span>
+                            class="px-3 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 ring-1 ring-amber-200">Creative</span>
                     </div>
                 </div>
 
-                <div class="animate-slide-up">
-                    <div class="bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-2xl">
-                        <h4 class="text-xl font-bold text-gray-900 mb-6">Statistik</h4>
-                        <div class="space-y-4">
-                            <div class="flex items-center justify-between"><span class="text-gray-600">Web
-                                    Projects</span><span class="font-bold text-blue-600">4+</span></div>
-                            <div class="flex items-center justify-between"><span class="text-gray-600">Network
-                                    Setups</span><span class="font-bold text-green-600">3+</span></div>
-                            <div class="flex items-center justify-between"><span class="text-gray-600">Video
-                                    Projects</span><span class="font-bold text-purple-600">20+</span></div>
-                            <div class="flex items-center justify-between"><span class="text-gray-600">Photo
-                                    Projects</span><span class="font-bold text-purple-600">5+</span></div>
-                            <div class="flex items-center justify-between"><span class="text-gray-600">Coffee
-                                    Consumed</span><span class="font-bold text-yellow-600">∞</span></div>
-                        </div>
-                    </div>
+                <div class="rounded-xl border border-slate-200 bg-white p-7">
+                    <h4 class="text-base font-semibold text-ink mb-5">Statistik</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex justify-between"><span class="text-slate-600">Web Projects</span><span
+                                class="font-semibold text-ink">4+</span></li>
+                        <li class="flex justify-between"><span class="text-slate-600">Network Setups</span><span
+                                class="font-semibold text-ink">3+</span></li>
+                        <li class="flex justify-between"><span class="text-slate-600">Video Projects</span><span
+                                class="font-semibold text-ink">20+</span></li>
+                        <li class="flex justify-between"><span class="text-slate-600">Photo Projects</span><span
+                                class="font-semibold text-ink">5+</span></li>
+                        <li class="flex justify-between"><span class="text-slate-600">Coffee Consumed</span><span
+                                class="font-semibold text-ink">∞</span></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== Skills ===== -->
-    <section id="skills" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Skills & Technologies</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
-            </div>
+    <!-- ===== SKILLS (card bordered, minimal) ===== -->
+    <section id="skills" class="py-24 bg-white">
+        <div class="mx-auto max-w-6xl px-6 md:px-8">
+            <header class="mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold text-ink">Keahlian </h2>
+                <div class="mt-3 h-[2px] w-14 bg-indigo-600/80"></div>
+            </header>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Backend -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-server text-2xl text-blue-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900">Web Development</h3>
+                <!-- Web Dev -->
+                <div class="rounded-xl border border-slate-200 bg-white p-7">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center"><i
+                                class="fas fa-server text-indigo-600"></i></div>
+                        <h3 class="text-lg font-semibold text-ink">Web Development</h3>
                     </div>
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-600">PHP</span>
-                            <div class="flex space-x-1">
-                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600">PHP</span>
+                            <div class="w-36 h-1.5 bg-slate-100 rounded">
+                                <div class="h-full w-[80%] bg-indigo-600 rounded"></div>
                             </div>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-600">Laravel</span>
-                            <div class="flex space-x-1">
-                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600">Laravel</span>
+                            <div class="w-36 h-1.5 bg-slate-100 rounded">
+                                <div class="h-full w-[95%] bg-indigo-600 rounded"></div>
                             </div>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-600">MySQL</span>
-                            <div class="flex space-x-1">
-                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-blue-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                        </li>
+                        <li class="flex items-center justify-between">
+                            <span class="text-slate-600">MySQL</span>
+                            <div class="w-36 h-1.5 bg-slate-100 rounded">
+                                <div class="h-full w-[80%] bg-indigo-600 rounded"></div>
                             </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
 
                 <!-- Network -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-network-wired text-2xl text-green-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900">Network Administration</h3>
+                <div class="rounded-xl border border-slate-200 bg-white p-7">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center"><i
+                                class="fas fa-network-wired text-emerald-600"></i></div>
+                        <h3 class="text-lg font-semibold text-ink">Network Administration</h3>
                     </div>
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-600">Network Setup</span>
-                            <div class="flex space-x-1">
-                                <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center justify-between"><span class="text-slate-600">Setup</span>
+                            <div class="w-36 h-1.5 bg-slate-100 rounded">
+                                <div class="h-full w-[85%] bg-emerald-600 rounded"></div>
                             </div>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-600">Troubleshooting</span>
-                            <div class="flex space-x-1">
-                                <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                        </li>
+                        <li class="flex items-center justify-between"><span
+                                class="text-slate-600">Troubleshooting</span>
+                            <div class="w-36 h-1.5 bg-slate-100 rounded">
+                                <div class="h-full w-[85%] bg-emerald-600 rounded"></div>
                             </div>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-600">Security</span>
-                            <div class="flex space-x-1">
-                                <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
-                                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                        </li>
+                        <li class="flex items-center justify-between"><span class="text-slate-600">Security</span>
+                            <div class="w-36 h-1.5 bg-slate-100 rounded">
+                                <div class="h-full w-[60%] bg-emerald-600 rounded"></div>
                             </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
 
                 <!-- Creative -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-palette text-2xl text-purple-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900">Creative Skills</h3>
+                <div class="rounded-xl border border-slate-200 bg-white p-7">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-lg bg-violet-50 flex items-center justify-center"><i
+                                class="fas fa-palette text-violet-600"></i></div>
+                        <h3 class="text-lg font-semibold text-ink">Creative Skills</h3>
                     </div>
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-600">After Effects</span>
-                            <div class="flex space-x-1">
-                                <div class="w-3 h-3 bg-purple-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-purple-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-purple-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-purple-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center justify-between"><span class="text-slate-600">After Effects</span>
+                            <div class="w-36 h-1.5 bg-slate-100 rounded">
+                                <div class="h-full w-[85%] bg-violet-600 rounded"></div>
                             </div>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-600">Photoshop</span>
-                            <div class="flex space-x-1">
-                                <div class="w-3 h-3 bg-purple-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-purple-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-purple-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-purple-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                        </li>
+                        <li class="flex items-center justify-between"><span class="text-slate-600">Photoshop</span>
+                            <div class="w-36 h-1.5 bg-slate-100 rounded">
+                                <div class="h-full w-[85%] bg-violet-600 rounded"></div>
                             </div>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-600">Video Editing</span>
-                            <div class="flex space-x-1">
-                                <div class="w-3 h-3 bg-purple-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-purple-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-purple-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-purple-600 rounded-full"></div>
-                                <div class="w-3 h-3 bg-purple-600 rounded-full"></div>
+                        </li>
+                        <li class="flex items-center justify-between"><span class="text-slate-600">Video Editing</span>
+                            <div class="w-36 h-1.5 bg-slate-100 rounded">
+                                <div class="h-full w-[100%] bg-violet-600 rounded"></div>
                             </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Hobbies -->
-            <div class="mt-16">
-                <h3 class="text-2xl font-bold text-gray-900 text-center mb-8">Hobbies</h3>
+            <!-- Hobbies compact -->
+            <div class="mt-14">
+                <header class="mb-12">
+                    <h2 class="text-3xl md:text-4xl font-semibold text-ink">Hobi </h2>
+                    <div class="mt-3 h-[2px] w-14 bg-indigo-600/80"></div>
+                </header>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-white p-6 rounded-xl shadow-md">
-                        <div class="flex items-center mb-4">
-                            <i class="fas fa-camera text-2xl text-blue-600 mr-3"></i>
-                            <h4 class="font-bold text-gray-900">Photography</h4>
-                        </div>
-                        <p class="text-sm text-gray-600">Menangkap momen dan komposisi visual yang estetik.</p>
+                    <div class="rounded-xl border border-slate-200 bg-white p-5"><i
+                            class="fas fa-camera text-blue-600 mr-2"></i><span
+                            class="font-medium text-ink">Photography</span>
+                        <p class="text-sm text-slate-600 mt-2">Momen & komposisi estetik.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-md">
-                        <div class="flex items-center mb-4">
-                            <i class="fas fa-video text-2xl text-blue-600 mr-3"></i>
-                            <h4 class="font-bold text-gray-900">Videography</h4>
-                        </div>
-                        <p class="text-sm text-gray-600">Produksi & editing video kreatif.</p>
+                    <div class="rounded-xl border border-slate-200 bg-white p-5"><i
+                            class="fas fa-video text-blue-600 mr-2"></i><span
+                            class="font-medium text-ink">Videography</span>
+                        <p class="text-sm text-slate-600 mt-2">Produksi & editing.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-md">
-                        <div class="flex items-center mb-4">
-                            <i class="fas fa-gamepad text-2xl text-blue-600 mr-3"></i>
-                            <h4 class="font-bold text-gray-900">Gaming</h4>
-                        </div>
-                        <p class="text-sm text-gray-600 mb-2">Mobile Legends</p>
-                        <p class="text-sm text-gray-600">Genshin Impact</p>
+                    <div class="rounded-xl border border-slate-200 bg-white p-5"><i
+                            class="fas fa-gamepad text-blue-600 mr-2"></i><span
+                            class="font-medium text-ink">Gaming</span>
+                        <p class="text-sm text-slate-600 mt-2">MLBB · Genshin Impact.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== Experience ===== -->
-    <section id="experience" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Experience</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+    <!-- ===== EXPERIENCE (timeline minimal) ===== -->
+    <section id="experience" class="py-24">
+        <div class="mx-auto max-w-6xl px-6 md:px-8">
+            <header class="mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold text-ink">Pengalaman</h2>
+                <div class="mt-3 h-[2px] w-14 bg-indigo-600/80"></div>
+            </header>
+
+            <div class="relative pl-6">
+                <div class="absolute left-2 top-0 bottom-0 w-px bg-slate-200"></div>
+
+                <article class="relative mb-10">
+                    <span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-indigo-600"></span>
+                    <div class="rounded-xl border border-slate-200 bg-white p-6">
+                        <h3 class="text-lg font-semibold text-ink">IT Support & Network Administrator</h3>
+                        <p class="text-sm text-indigo-700 font-medium mb-1">Magang berdampak(MBKM) — Balai Kementerian
+                            Pekerjaan
+                            Umum Surabaya</p>
+                        <p class="text-xs text-slate-500 mb-3">2025</p>
+                        <p class="text-slate-700">Dukungan infrastruktur jaringan, instalasi perangkat, troubleshooting,
+                            web developer dll.</p>
+                    </div>
+                </article>
+
+                <article class="relative">
+                    <span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-indigo-400"></span>
+                    <div class="rounded-xl border border-slate-200 bg-white p-6">
+                        <h3 class="text-lg font-semibold text-ink">Admin & Teknisi Magang</h3>
+                        <p class="text-sm text-indigo-700 font-medium mb-1">CV Intermedia</p>
+                        <p class="text-xs text-slate-500 mb-3">2022 – 2023</p>
+                        <p class="text-slate-700">Servis printer/proyektor, pemasangan & perawatan CCTV, serta
+                            administrasi.</p>
+                    </div>
+                </article>
             </div>
-            <div class="relative">
-                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-200"></div>
-                <div class="space-y-12">
-                    <div class="relative flex items-center">
-                        <div class="flex-1 pr-8 text-right">
-                            <div class="bg-blue-50 p-6 rounded-xl shadow-md">
-                                <h3 class="text-xl font-bold text-blue-900 mb-2">IT Support & Network Administrator</h3>
-                                <p class="text-blue-700 font-medium mb-2">Magang Kuliah — Balai Kementerian Pekerjaan
-                                    Umum Surabaya</p>
-                                <p class="text-sm text-gray-600 mb-3">2025</p>
-                                <p class="text-gray-700">Dukungan infrastruktur jaringan, instalasi perangkat,
-                                    troubleshooting, dll.</p>
-                            </div>
-                        </div>
-                        <div
-                            class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white">
-                        </div>
-                        <div class="flex-1 pl-8"></div>
-                    </div>
+        </div>
+    </section>
 
-                    <div class="relative flex items-center">
-                        <div class="flex-1 pr-8"></div>
-                        <div
-                            class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-400 rounded-full border-4 border-white">
+    <!-- ===== PROJECTS (bordered cards, hover subtle) ===== -->
+    <section id="projects" class="py-24 bg-white">
+        <div class="mx-auto max-w-6xl px-6 md:px-8">
+            <header class="mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold text-ink">Projects</h2>
+                <div class="mt-3 h-[2px] w-14 bg-indigo-600/80"></div>
+            </header>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    class="rounded-xl border border-slate-200 bg-white overflow-hidden hover:border-slate-300 transition">
+                    <img src="/images/project1.png" alt="Admin Dashboard" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="text-lg font-semibold text-ink mb-2">Monitoring Okupansi Ruang(TOPANG)</h4>
+                        <p class="text-slate-600 mb-4">Website Peminjaman Ruang dan Monitoring Okupansi Ruang
+                            menggunakan Laravel + Bootstrap.</p>
+                        <div class="flex flex-wrap gap-2 mb-4 text-xs">
+                            <span
+                                class="px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200">Laravel</span>
+                            <span
+                                class="px-2.5 py-1 rounded-full bg-red-50 text-red-700 ring-1 ring-red-200">Bootstrap</span>
+                            <span
+                                class="px-2.5 py-1 rounded-full bg-violet-50 text-violet-700 ring-1 ring-violet-200">MySQL</span>
                         </div>
-                        <div class="flex-1 pl-8">
-                            <div class="bg-gray-50 p-6 rounded-xl shadow-md">
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">Admin & Teknisi Magang</h3>
-                                <p class="text-gray-700 font-medium mb-2">CV Intermedia</p>
-                                <p class="text-sm text-gray-600 mb-3">2022 – 2023</p>
-                                <p class="text-gray-700">Servis printer/proyektor, pemasangan & perawatan CCTV, dan
-                                    administrasi.</p>
-                            </div>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-indigo-600 hover:text-indigo-800"><i
+                                    class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="text-slate-600 hover:text-slate-800"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
+                </div>
 
+
+
+                <div
+                    class="rounded-xl border border-slate-200 bg-white overflow-hidden hover:border-slate-300 transition">
+                    <img src="/images/WhatsApp Image 2025-08-05 at 10.32.53_a2ed3283.jpg" alt="Network Monitor"
+                        class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="text-lg font-semibold text-ink mb-2">Setup Network</h4>
+                        <p class="text-slate-600 mb-4">Setup Network Balai Kementerian Pekerjaan Umum menggunakan
+                            Router, Switch, dan Access Point(Ruijie cloud)</p>
+                        <div class="flex flex-wrap gap-2 mb-4 text-xs">
+                            <span
+                                class="px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200">Router</span>
+                            <span
+                                class="px-2.5 py-1 rounded-full bg-rose-50 text-rose-700 ring-1 ring-rose-200">Switch</span>
+                            <span
+                                class="px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 ring-1 ring-amber-200">Access
+                                Point</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-indigo-600 hover:text-indigo-800"><i
+                                    class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="text-slate-600 hover:text-slate-800"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="rounded-xl border border-dashed border-slate-300 bg-white/50 p-6 flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fas fa-plus text-2xl text-slate-400"></i>
+                        <p class="mt-3 text-sm text-slate-600">Proyek yang akan datang</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== Projects ===== -->
-    <section id="projects" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
-            </div>
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="py-24">
+        <div class="mx-auto max-w-6xl px-6 md:px-8">
+            <header class="mb-12">
+                <h2 class="text-3xl md:text-4xl font-semibold text-ink">Hubungi Saya</h2>
+                <div class="mt-3 h-[2px] w-14 bg-indigo-600/80"></div>
+            </header>
 
-            <!-- Web Dev -->
-            <div class="mb-16">
-                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">
-                    <i class="fas fa-code text-blue-600 mr-3"></i>Web Development
-                </h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Card 1 -->
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                        <img src="/images/projectweb1.png" alt="Admin Dashboard" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-gray-900 mb-3">Admin Dashboard</h4>
-                            <p class="text-gray-600 mb-4">Dasbor admin modern (Laravel + Tailwind CSS).</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span
-                                    class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Laravel</span>
-                                <span
-                                    class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">Tailwind
-                                    CSS</span>
-                                <span
-                                    class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-medium">MySQL</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <a href="#" class="text-blue-600 hover:text-blue-800 transition-colors"><i
-                                        class="fas fa-external-link-alt"></i></a>
-                                <a href="#" class="text-gray-600 hover:text-gray-800 transition-colors"><i
-                                        class="fab fa-github"></i></a>
-                            </div>
-                        </div>
+            <div class="grid lg:grid-cols-2 gap-10">
+                <form class="rounded-xl border border-slate-200 bg-white p-7 space-y-5"
+                    onsubmit="event.preventDefault(); sendMessage();">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-slate-700 mb-2">Name</label>
+                        <input id="name" type="text"
+                            class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                            placeholder="Your Name">
                     </div>
-
-                    <!-- Card 2 (duplikat contoh) -->
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                        <img src="/images/projectweb1.png" alt="Admin Dashboard" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-gray-900 mb-3">Admin Dashboard</h4>
-                            <p class="text-gray-600 mb-4">Dasbor admin modern (Laravel + Tailwind CSS).</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span
-                                    class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Laravel</span>
-                                <span
-                                    class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">Tailwind
-                                    CSS</span>
-                                <span
-                                    class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-medium">MySQL</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <a href="#" class="text-blue-600 hover:text-blue-800 transition-colors"><i
-                                        class="fas fa-external-link-alt"></i></a>
-                                <a href="#" class="text-gray-600 hover:text-gray-800 transition-colors"><i
-                                        class="fab fa-github"></i></a>
-                            </div>
-                        </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-700 mb-2">Email</label>
+                        <input id="email" type="email"
+                            class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                            placeholder="your.email@example.com">
                     </div>
-
-                    <!-- Card 3 -->
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                        <img src="/images/WhatsApp Image 2025-08-05 at 10.32.53_a2ed3283.jpg" alt="Network Monitor"
-                            class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-gray-900 mb-3">Network Monitoring System</h4>
-                            <p class="text-gray-600 mb-4">Monitoring jaringan realtime (PHP + SNMP + JS).</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span
-                                    class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">PHP</span>
-                                <span
-                                    class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium">SNMP</span>
-                                <span
-                                    class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-medium">JavaScript</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <a href="#" class="text-blue-600 hover:text-blue-800 transition-colors"><i
-                                        class="fas fa-external-link-alt"></i></a>
-                                <a href="#" class="text-gray-600 hover:text-gray-800 transition-colors"><i
-                                        class="fab fa-github"></i></a>
-                            </div>
-                        </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-slate-700 mb-2">Message</label>
+                        <textarea id="message" rows="5"
+                            class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                            placeholder="Tell me about your project..."></textarea>
                     </div>
+                    <button type="submit"
+                        class="w-full rounded-lg bg-indigo-600 text-white py-3 font-semibold hover:bg-indigo-700 transition"><i
+                            class="fas fa-paper-plane mr-2"></i>Send Message</button>
+                </form>
 
-                    <!-- Coming soon -->
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                        <div
-                            class="w-full h-48 bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center">
-                            <i class="fas fa-plus text-4xl text-white"></i>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-gray-900 mb-3">Proyek yang akan datang</h4>
-                            <p class="text-gray-600 mb-4">Nantikan proyek backend & jaringan berikutnya.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-medium">In
-                                    Development</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Video Editing -->
-            <div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">
-                    <i class="fas fa-video text-purple-600 mr-3"></i>Video Editing Portfolio
-                </h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                        <video controls class="w-full h-48 object-cover">
-                            <source src="/placeholder.mp4" type="video/mp4">
-                            Browser kamu tidak mendukung video.
-                        </video>
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-gray-900 mb-3">Wanwan M-world</h4>
-                            <p class="text-gray-600 mb-4">2D character animation (AE + PS).</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span
-                                    class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-medium">After
-                                    Effects</span>
-                                <span
-                                    class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Photoshop</span>
-                                <span
-                                    class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">Animation</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                        <video controls class="w-full h-48 object-cover">
-                            <source src="/placeholder.mp4" type="video/mp4">
-                        </video>
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-gray-900 mb-3">Wanwan M-world</h4>
-                            <p class="text-gray-600 mb-4">2D character animation (AE + PS).</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span
-                                    class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-medium">After
-                                    Effects</span>
-                                <span
-                                    class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Photoshop</span>
-                                <span
-                                    class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">Animation</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
-                        <video controls class="w-full h-48 object-cover">
-                            <source src="/placeholder.mp4" type="video/mp4">
-                        </video>
-                        <div class="p-6">
-                            <h4 class="text-xl font-bold text-gray-900 mb-3">Wanwan M-world</h4>
-                            <p class="text-gray-600 mb-4">2D character animation (AE + PS).</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span
-                                    class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-medium">After
-                                    Effects</span>
-                                <span
-                                    class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Photoshop</span>
-                                <span
-                                    class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">Animation</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ===== Contact ===== -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Hubungi saya</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
-                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Siap berkolaborasi? Ceritakan kebutuhanmu.</p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-12">
-                <!-- Form -->
-                <div class="bg-gray-50 p-8 rounded-2xl">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">
-                        <i class="fas fa-paper-plane text-blue-600 mr-3"></i>Send Message
-                    </h3>
-                    <form class="space-y-6" onsubmit="event.preventDefault(); sendMessage();">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                            <input id="name" type="text"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                                placeholder="Your Name" />
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                            <input id="email" type="email"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                                placeholder="your.email@example.com" />
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                            <textarea id="message" rows="5"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                                placeholder="Tell me about your project..."></textarea>
-                        </div>
-                        <button type="submit"
-                            class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                            <i class="fas fa-paper-plane mr-2"></i>Send Message
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Info -->
                 <div class="space-y-8">
-                    <div class="max-w-md p-6 bg-gradient-to-br from-blue-50 to-white rounded-xl shadow">
-                        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Kontak</h2>
-                        <div class="flex items-start gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center">
-                                <i class="fas fa-envelope text-lg"></i>
+                    <div class="rounded-xl border border-slate-200 bg-white p-6">
+                        <h3 class="text-lg font-semibold text-ink mb-4">Kontak</h3>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="w-9 h-9 rounded-full bg-indigo-600 text-white flex items-center justify-center">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-ink">Email</p>
+                                    <p class="text-slate-700">arilmubin0@gmail.com</p>
+                                </div>
                             </div>
-                            <div>
-                                <p class="font-medium text-gray-800">Email</p>
-                                <p class="text-sm text-gray-700">arilmubin0@gmail.com</p>
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="w-9 h-9 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-ink">WhatsApp</p>
+                                    <p class="text-slate-700">+62 856-4723-4364</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex items-start gap-3 mb-4">
-                            <div
-                                class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center">
-                                <i class="fab fa-whatsapp text-lg"></i>
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="w-9 h-9 rounded-full bg-violet-600 text-white flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-ink">Alamat</p>
+                                    <p class="text-slate-700">RT 19/RW 07, Dusun Sirapan Krajan, </p>
+                                    <p class="text-slate-700">Desa Kemangsen,
+                                        Balongbendo, Sidoarjo,</p>
+                                    <p class="text-slate-700">Jawa Timur.</p>
+                                </div>
                             </div>
-                            <div>
-                                <p class="font-medium text-gray-800">WhatsApp</p>
-                                <p class="text-sm text-gray-700">+62 856-4723-4364</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <div
-                                class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center">
-                                <i class="fas fa-map-marker-alt text-lg"></i>
-                            </div>
-                            <div>
-                                <p class="font-medium text-gray-800">Alamat</p>
-                                <p class="text-sm text-gray-700">RT 19/RW 07, Dusun Sirapan Krajan, Desa Kemangsen,
-                                    Balongbendo, Sidoarjo, Jawa Timur.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold text-gray-900 mb-6">Follow Me</h3>
-                        <div class="flex space-x-4">
-                            <a href="https://github.com/Uhycore"
-                                class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-gray-700 transition-colors"><i
-                                    class="fab fa-github"></i></a>
-                            <a href="https://instagram.com/Uhycore"
-                                class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition-colors"><i
-                                    class="fab fa-instagram"></i></a>
-                            <a href="https://tiktok.com/@Uhycore"
-                                class="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white hover:bg-gray-800 transition-colors"><i
-                                    class="fab fa-tiktok"></i></a>
                         </div>
                     </div>
 
-                    <div class="bg-gray-200 rounded-2xl overflow-hidden h-64">
+                    <div class="rounded-xl overflow-hidden h-64 border border-slate-200">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d511.8190341895391!2d112.55884933971679!3d-7.415373585410397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1731902219701!5m2!1sid!2sid"
                             class="w-full h-full" style="border:0" allowfullscreen="" loading="lazy"></iframe>
@@ -799,54 +620,46 @@
         </div>
     </section>
 
-    <!-- ===== Footer ===== -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="text-2xl font-bold mb-4"><i class="fas fa-code mr-2"></i>Uhycore.dev</div>
-            <p class="text-gray-400 mb-6">Backend Developer & Junior Network Administrator</p>
-            <div class="flex justify-center space-x-6 mb-8">
-                <a href="https://github.com/Uhycore" class="text-gray-400 hover:text-white transition-colors"><i
-                        class="fab fa-github text-xl"></i></a>
-                <a href="https://instagram.com/Uhycore" class="text-gray-400 hover:text-white transition-colors"><i
-                        class="fab fa-instagram text-xl"></i></a>
-                <a href="https://tiktok.com/@Uhycore" class="text-gray-400 hover:text-white transition-colors"><i
-                        class="fab fa-tiktok text-xl"></i></a>
+    <!-- ===== FOOTER (tipis & rapi) ===== */ -->
+    <footer class="bg-slate-900 text-white py-10">
+        <div class="mx-auto max-w-6xl px-6 md:px-8 text-center">
+            <div class="text-xl font-semibold mb-2"><i class="fas fa-code mr-2"></i>Uhycore.dev</div>
+            <p class="text-slate-400 mb-6">Web Developer & Junior Network Administrator</p>
+            <div class="flex justify-center gap-6 mb-6">
+                <a href="https://github.com/Uhycore" class="text-slate-400 hover:text-white"><i
+                        class="fab fa-github text-lg"></i></a>
+                <a href="https://instagram.com/Uhycore" class="text-slate-400 hover:text-white"><i
+                        class="fab fa-instagram text-lg"></i></a>
+                <!-- <a href="https://tiktok.com/@Uhycore" class="text-slate-400 hover:text-white"><i
+                        class="fab fa-tiktok text-lg"></i></a> -->
             </div>
-            <div class="border-t border-gray-800 pt-8">
-                <p class="text-gray-400">© 2024 Uhycore.dev. All rights reserved.</p>
-            </div>
+            <p class="text-slate-500 text-sm">© 2025 Uhycore.dev. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- ===== JS: smooth scroll + scrollspy + WhatsApp ===== -->
     <script>
-        // Smooth scroll (tanpa "lompat")
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
-                const id = a.getAttribute('href');
-                const target = document.querySelector(id);
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+                const id = a.getAttribute('href'); const t = document.querySelector(id);
+                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }) }
+            })
         });
 
-        // Scrollspy: tandai ikon aktif sesuai section yang terlihat
+        // Scrollspy
         const sections = document.querySelectorAll('section[id]');
-        const links = Array.from(document.querySelectorAll('aside a'));
-
+        const links = [...document.querySelectorAll('aside a')];
         const spy = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${entry.target.id}`));
+                    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${entry.target.id}`))
                 }
-            });
-        }, { threshold: 0.6, rootMargin: '0px 0px -10% 0px' });
-
+            })
+        }, { threshold: .6, rootMargin: '0px 0px -10% 0px' });
         sections.forEach(s => spy.observe(s));
 
-        // WhatsApp sender
+        // WhatsApp
         function sendMessage() {
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
