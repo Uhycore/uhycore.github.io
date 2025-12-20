@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work - Photography Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        .navbar {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .gallery-item {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .gallery-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .gallery-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .gallery-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .gallery-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .gallery-item:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .gallery-item:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .gallery-item:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .gallery-item:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+        .gallery-item:nth-child(9) {
+            animation-delay: 0.9s;
+        }
+
+        .gallery-item:nth-child(10) {
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gallery-item img {
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.7);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="smooth-scroll">
+
+    <!-- Navigation -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 bg-black/30 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-5">
+            <div class="flex items-center justify-between">
+                <a href="/" class="text-xl font-bold tracking-tight hover:text-gray-300 transition-colors">
+                    EASTBANGER
+                </a>
+                <ul class="flex items-center gap-8">
+                    <li><a href="#work" class="text-sm font-medium hover:text-gray-300 transition-colors">Work</a></li>
+                    <li><a href="#about" class="text-sm font-medium hover:text-gray-300 transition-colors">About</a>
+                    </li>
+                    <li><a href="#contact" class="text-sm font-medium hover:text-gray-300 transition-colors">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-20">
+        <!-- Gallery Grid -->
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <div class="space-y-4">
+
+                <!-- Project 1: Drift Masters -->
+                <div class="gallery-item relative overflow-hidden rounded-lg group cursor-pointer">
+                    <a href="#drift-masters" class="block">
+                        <div class="aspect-[16/6] overflow-hidden bg-gray-900">
+                            <img src="/placeholder.svg?height=711&width=1920" alt="Drift Masters"
+                                class="w-full h-full object-cover" />
+                        </div>
+                        <div class="overlay">
+                            <h3 class="text-2xl font-bold">Drift Masters</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 2: Ultrace -->
+                <div class="gallery-item relative overflow-hidden rounded-lg group cursor-pointer">
+                    <a href="#ultrace" class="block">
+                        <div class="aspect-[16/6] overflow-hidden bg-gray-900">
+                            <img src="/placeholder.svg?height=711&width=1920" alt="Ultrace"
+                                class="w-full h-full object-cover" />
+                        </div>
+                        <div class="overlay">
+                            <h3 class="text-2xl font-bold">Ultrace</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 3: Events -->
+                <div class="gallery-item relative overflow-hidden rounded-lg group cursor-pointer">
+                    <a href="#events" class="block">
+                        <div class="aspect-[16/6] overflow-hidden bg-gray-900">
+                            <img src="/placeholder.svg?height=711&width=1920" alt="Events"
+                                class="w-full h-full object-cover" />
+                        </div>
+                        <div class="overlay">
+                            <h3 class="text-2xl font-bold">Events</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 4: Portraits -->
+                <div class="gallery-item relative overflow-hidden rounded-lg group cursor-pointer">
+                    <a href="#portraits" class="block">
+                        <div class="aspect-[16/6] overflow-hidden bg-gray-900">
+                            <img src="/placeholder.svg?height=711&width=1920" alt="Portraits"
+                                class="w-full h-full object-cover" />
+                        </div>
+                        <div class="overlay">
+                            <h3 class="text-2xl font-bold">Portraits</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 5: Product Photography -->
+                <div class="gallery-item relative overflow-hidden rounded-lg group cursor-pointer">
+                    <a href="#product-photography" class="block">
+                        <div class="aspect-[16/6] overflow-hidden bg-gray-900">
+                            <img src="/placeholder.svg?height=711&width=1920" alt="Product Photography"
+                                class="w-full h-full object-cover" />
+                        </div>
+                        <div class="overlay">
+                            <h3 class="text-2xl font-bold">Product Photography</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 6: Automotive -->
+                <div class="gallery-item relative overflow-hidden rounded-lg group cursor-pointer">
+                    <a href="#automotive" class="block">
+                        <div class="aspect-[16/6] overflow-hidden bg-gray-900">
+                            <img src="/placeholder.svg?height=711&width=1920" alt="Automotive"
+                                class="w-full h-full object-cover" />
+                        </div>
+                        <div class="overlay">
+                            <h3 class="text-2xl font-bold">Automotive</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 7: Winter -->
+                <div class="gallery-item relative overflow-hidden rounded-lg group cursor-pointer">
+                    <a href="#winter" class="block">
+                        <div class="aspect-[16/6] overflow-hidden bg-gray-900">
+                            <img src="/placeholder.svg?height=711&width=1920" alt="Winter"
+                                class="w-full h-full object-cover" />
+                        </div>
+                        <div class="overlay">
+                            <h3 class="text-2xl font-bold">Winter</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 8: Rainy -->
+                <div class="gallery-item relative overflow-hidden rounded-lg group cursor-pointer">
+                    <a href="#rainy" class="block">
+                        <div class="aspect-[16/6] overflow-hidden bg-gray-900">
+                            <img src="/placeholder.svg?height=711&width=1920" alt="Rainy"
+                                class="w-full h-full object-cover" />
+                        </div>
+                        <div class="overlay">
+                            <h3 class="text-2xl font-bold">Rainy</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 9: Golden Hour -->
+                <div class="gallery-item relative overflow-hidden rounded-lg group cursor-pointer">
+                    <a href="#golden-hour" class="block">
+                        <div class="aspect-[16/6] overflow-hidden bg-gray-900">
+                            <img src="/placeholder.svg?height=711&width=1920" alt="Golden Hour"
+                                class="w-full h-full object-cover" />
+                        </div>
+                        <div class="overlay">
+                            <h3 class="text-2xl font-bold">Golden Hour</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Project 10: Product Videos -->
+                <div class="gallery-item relative overflow-hidden rounded-lg group cursor-pointer">
+                    <a href="#product-videos" class="block">
+                        <div class="aspect-[16/6] overflow-hidden bg-gray-900">
+                            <img src="/placeholder.svg?height=711&width=1920" alt="Product Videos"
+                                class="w-full h-full object-cover" />
+                        </div>
+                        <div class="overlay">
+                            <h3 class="text-2xl font-bold">Product Videos</h3>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 mt-20">
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-gray-400">© 2025 EASTBANGER. Street, travel, and lifestyle photographer.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Instagram</a>
+                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Facebook</a>
+                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">YouTube</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

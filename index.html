@@ -272,6 +272,60 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Floating Logos Animation */
+        .flying-logo {
+            position: absolute;
+            width: 52px;
+            height: 52px;
+            object-fit: contain;
+            opacity: .85;
+            pointer-events: none;
+            filter: drop-shadow(0 18px 25px rgba(0, 0, 0, .25));
+            animation: flyUp var(--dur, 6s) linear forwards;
+        }
+
+        @keyframes flyUp {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.9;
+                /* selesai fade in */
+            }
+
+            55% {
+                opacity: 0.9;
+                /* masih jelas di tengah */
+            }
+
+            80% {
+                opacity: 0.3;
+                /* mulai ngilang */
+            }
+
+            100% {
+                transform: translate(var(--x1), -520px) rotate(8deg);
+                opacity: 0;
+            }
+        }
+
+
+        /* Typing Effect */
+
+        .cursor::after {
+            content: "|";
+            margin-left: 6px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
@@ -345,13 +399,13 @@
 
                         <h1 class="text-5xl md:text-7xl lg:text-8xl font-black leading-tight">
                             Hi, I'm
-                            <span class="gradient-text block mt-2">Aril</span>
+                            <span id="typing-text" class="gradient-text block mt-2"></span>
                         </h1>
 
+
                         <p class="text-xl md:text-2xl text-slate-300 max-w-xl leading-relaxed">
-                            Web Developer & Network Administrator yang passionate dalam membangun solusi digital yang
-                            cepat, reliable, dan
-                            berdampak.
+                            A passionate Web Developer & Network Administrator, with experience as a Videographer and
+                            Photographer, focused on building fast, reliable, and impactful digital solutions.
                         </p>
 
                         <div class="flex flex-wrap gap-4 pt-4">
@@ -386,14 +440,22 @@
                     <!-- Right: Profile Image -->
                     <div class="relative min-w-0 animate-scale-in">
                         <div class="relative">
+
+                            <!-- Glow Background -->
                             <div
                                 class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-3xl blur-2xl opacity-50 animate-pulse pointer-events-none">
                             </div>
 
-                            <img src="images/aril_pu.png" alt="Aril - Web Developer"
-                                class="relative w-full max-w-full h-[420px] md:h-[520px] lg:h-[620px] object-cover rounded-3xl shadow-2xl border-4 border-white/10">
+                            <div class="relative min-w-0 animate-scale-in">
+                                <div id="heroCard" class="relative overflow-hidden rounded-3xl">
+                                    <img src="images/aril_pu.png" alt="Aril - Web Developer"
+                                        class="relative w-full h-[420px] md:h-[520px] lg:h-[620px] object-cover rounded-3xl shadow-2xl border-4 border-white/10">
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -413,7 +475,7 @@
                     <!-- Section Header -->
                     <div class="text-center mb-16 reveal">
                         <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                            Tentang <span class="gradient-text">Saya</span>
+                            About <span class="gradient-text">Me</span>
                         </h2>
                         <div class="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full"></div>
                     </div>
@@ -427,18 +489,24 @@
                                     <i class="fas fa-terminal text-indigo-600 mr-3"></i>
                                     Profile.init()
                                 </h3>
+
                                 <p class="text-lg text-slate-700 font-semibold mb-3">
-                                    Web Developer | Network Administrator | Problem Solver
+                                    Web Developer | Network Administrator | Videographer | Photographer
                                 </p>
+
                                 <p class="text-slate-600 leading-relaxed mb-4">
-                                    Fokus membangun aplikasi web tangguh menggunakan Laravel/PHP dan memastikan
-                                    infrastruktur jaringan stabil & aman. Passionate dalam menciptakan solusi digital
-                                    yang memberikan nilai tambah.
+                                    Focused on building robust web applications using Laravel/PHP while ensuring a
+                                    stable and secure network
+                                    infrastructure. Passionate about creating digital solutions that deliver real value
+                                    and long-term impact.
                                 </p>
+
                                 <p class="text-slate-600 leading-relaxed">
-                                    <span class="font-semibold">Daily Routine:</span> Coding → Network → Editing →
-                                    Photography → Videography → Makan → Doa → Tidur → Repeat 🛠️🌐🎬🍕🙏🛌
+                                    <span class="font-semibold">Daily Routine:</span>
+                                    Coding → Networking → Editing → Photography → Videography → Eat → Pray → Sleep →
+                                    Repeat 🛠️🌐🎬🍕🙏🛌
                                 </p>
+
                             </div>
 
                             <!-- Tags -->
@@ -481,7 +549,7 @@
                                             <span class="ml-3">Web Projects</span>
                                         </span>
                                         <span
-                                            class="text-2xl font-bold text-white group-hover:scale-110 transition-transform">4+</span>
+                                            class="text-2xl font-bold text-white group-hover:scale-110 transition-transform">2+</span>
                                     </div>
                                     <div class="h-px bg-slate-700"></div>
                                     <div class="flex items-center justify-between group">
@@ -499,7 +567,7 @@
                                             <span class="ml-3">Video Projects</span>
                                         </span>
                                         <span
-                                            class="text-2xl font-bold text-white group-hover:scale-110 transition-transform">20+</span>
+                                            class="text-2xl font-bold text-white group-hover:scale-110 transition-transform">0</span>
                                     </div>
                                     <div class="h-px bg-slate-700"></div>
                                     <div class="flex items-center justify-between group">
@@ -508,7 +576,7 @@
                                             <span class="ml-3">Photo Projects</span>
                                         </span>
                                         <span
-                                            class="text-2xl font-bold text-white group-hover:scale-110 transition-transform">5+</span>
+                                            class="text-2xl font-bold text-white group-hover:scale-110 transition-transform">0</span>
                                     </div>
                                     <div class="h-px bg-slate-700"></div>
                                     <div class="flex items-center justify-between group">
@@ -534,7 +602,7 @@
                     <!-- Section Header -->
                     <div class="text-center mb-16 reveal">
                         <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                            Keahlian <span class="gradient-text">Saya</span>
+                            My <span class="gradient-text">Skills</span>
                         </h2>
                         <div class="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full"></div>
                     </div>
@@ -678,7 +746,7 @@
                     <div>
                         <div class="text-center mb-12 reveal">
                             <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                                Hobi & <span class="gradient-text">Passion</span>
+                                Hobbies & <span class="gradient-text">Passion</span>
                             </h3>
                             <div class="w-20 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full">
                             </div>
@@ -694,7 +762,9 @@
                                     </div>
                                     <h4 class="text-lg font-bold text-slate-900">Photography</h4>
                                 </div>
-                                <p class="text-slate-600">Menangkap momen & komposisi estetik dalam setiap frame.</p>
+                                <p class="text-slate-600">
+                                    Capturing moments and aesthetic compositions in every frame.
+                                </p>
                             </div>
 
                             <div
@@ -706,7 +776,9 @@
                                     </div>
                                     <h4 class="text-lg font-bold text-slate-900">Videography</h4>
                                 </div>
-                                <p class="text-slate-600">Produksi konten video & editing profesional.</p>
+                                <p class="text-slate-600">
+                                    Professional video production and editing with a creative approach.
+                                </p>
                             </div>
 
                             <div
@@ -718,8 +790,11 @@
                                     </div>
                                     <h4 class="text-lg font-bold text-slate-900">Gaming</h4>
                                 </div>
-                                <p class="text-slate-600">MLBB · Genshin Impact · Mobile Legends.</p>
+                                <p class="text-slate-600">
+                                    MLBB · Genshin Impact · Mobile Games enthusiast.
+                                </p>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -733,7 +808,7 @@
                     <!-- Section Header -->
                     <div class="text-center mb-16 reveal">
                         <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                            Pengalaman <span class="gradient-text">Kerja</span>
+                            Work <span class="gradient-text">Experience</span>
                         </h2>
                         <div class="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full"></div>
                     </div>
@@ -752,7 +827,7 @@
                                     <div class="inline-block md:block">
                                         <span
                                             class="inline-block px-4 py-2 bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 rounded-full text-sm font-semibold mb-2">
-                                            2025 - Sekarang
+                                            2025 - Present
                                         </span>
                                     </div>
                                 </div>
@@ -762,15 +837,17 @@
                                 <div class="md:w-1/2 md:pl-12">
                                     <div
                                         class="p-6 bg-gradient-to-br from-white to-indigo-50 rounded-2xl shadow-lg border border-indigo-100 hover:shadow-xl transition-all ml-12 md:ml-0">
-                                        <h3 class="text-xl font-bold text-slate-900 mb-2">IT Support & Network
-                                            Administrator</h3>
+                                        <h3 class="text-xl font-bold text-slate-900 mb-2">
+                                            IT Support & Network Administrator
+                                        </h3>
                                         <p class="text-indigo-600 font-semibold mb-3">
                                             <i class="fas fa-building mr-2"></i>
-                                            Balai Kementerian PU Surabaya
+                                            Balai Pengembangan Kompetensi Wilayah VI Surabaya
                                         </p>
                                         <p class="text-slate-600">
-                                            Dukungan infrastruktur jaringan, instalasi perangkat, troubleshooting, web
-                                            development, dan maintenance sistem.
+                                            Providing network infrastructure support, device installation,
+                                            troubleshooting,
+                                            web development, and system maintenance.
                                         </p>
                                     </div>
                                 </div>
@@ -794,20 +871,23 @@
                                 <div class="md:w-1/2 md:pl-12">
                                     <div
                                         class="p-6 bg-gradient-to-br from-white to-purple-50 rounded-2xl shadow-lg border border-purple-100 hover:shadow-xl transition-all ml-12 md:ml-0">
-                                        <h3 class="text-xl font-bold text-slate-900 mb-2">Admin & Teknisi Magang</h3>
+                                        <h3 class="text-xl font-bold text-slate-900 mb-2">
+                                            Internship Admin & Technician
+                                        </h3>
                                         <p class="text-purple-600 font-semibold mb-3">
                                             <i class="fas fa-building mr-2"></i>
                                             CV Intermedia
                                         </p>
                                         <p class="text-slate-600">
-                                            Servis printer/proyektor, pemasangan & perawatan CCTV, serta administrasi
-                                            kantor.
+                                            Printer and projector servicing, CCTV installation and maintenance,
+                                            as well as office administrative support.
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -823,12 +903,13 @@
                         </h2>
                         <div class="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full"></div>
                         <p class="text-slate-600 mt-4 max-w-2xl mx-auto">
-                            Berikut adalah beberapa proyek yang telah saya kerjakan dengan penuh dedikasi dan passion.
+                            Here are some of the projects I have worked on with dedication and passion.
                         </p>
                     </div>
 
                     <!-- Projects Grid -->
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
                         <!-- Project 1 -->
                         <div class="group reveal">
                             <div
@@ -843,11 +924,12 @@
                                 <div class="p-6">
                                     <h3
                                         class="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">
-                                        Monitoring Okupansi Ruang (TOPANG)
+                                        Room Occupancy Monitoring System (TOPANG)
                                     </h3>
                                     <p class="text-slate-600 mb-4 line-clamp-3">
-                                        Website Peminjaman Ruang dan Monitoring Okupansi Ruang menggunakan Laravel +
-                                        Bootstrap dengan fitur real-time monitoring.
+                                        A room booking and occupancy monitoring web application built with Laravel and
+                                        Bootstrap,
+                                        featuring real-time monitoring.
                                     </p>
                                     <div class="flex flex-wrap gap-2 mb-4">
                                         <span
@@ -866,7 +948,7 @@
                                     <div class="flex gap-3">
                                         <a href="#"
                                             class="flex-1 text-center px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all">
-                                            <i class="fas fa-external-link-alt mr-2"></i>Demo
+                                            <i class="fas fa-external-link-alt mr-2"></i> Demo
                                         </a>
                                         <a href="#"
                                             class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors">
@@ -883,7 +965,7 @@
                                 class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100">
                                 <div class="relative overflow-hidden h-56">
                                     <img src="images/WhatsApp Image 2025-08-05 at 10.32.53_a2ed3283.jpg"
-                                        alt="Network Setup Project"
+                                        alt="Network Infrastructure Project"
                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                     <div
                                         class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
@@ -892,11 +974,11 @@
                                 <div class="p-6">
                                     <h3
                                         class="text-xl font-bold text-slate-900 mb-3 group-hover:text-emerald-600 transition-colors">
-                                        Setup Network Infrastructure
+                                        Network Infrastructure Setup
                                     </h3>
                                     <p class="text-slate-600 mb-4 line-clamp-3">
-                                        Setup Network Balai Kementerian Pekerjaan Umum menggunakan Router, Switch, dan
-                                        Access Point (Ruijie Cloud).
+                                        Network infrastructure setup for the Ministry of Public Works Training Center,
+                                        utilizing routers, switches, and access points managed via Ruijie Cloud.
                                     </p>
                                     <div class="flex flex-wrap gap-2 mb-4">
                                         <span
@@ -915,7 +997,7 @@
                                     <div class="flex gap-3">
                                         <a href="#"
                                             class="flex-1 text-center px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-lg hover:shadow-lg transition-all">
-                                            <i class="fas fa-external-link-alt mr-2"></i>View
+                                            <i class="fas fa-external-link-alt mr-2"></i> View
                                         </a>
                                         <a href="#"
                                             class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors">
@@ -934,11 +1016,17 @@
                                     class="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center mb-4">
                                     <i class="fas fa-plus text-3xl text-slate-400"></i>
                                 </div>
-                                <h3 class="text-xl font-bold text-slate-700 mb-2">More Projects Coming Soon</h3>
-                                <p class="text-slate-500">Stay tuned for upcoming projects!</p>
+                                <h3 class="text-xl font-bold text-slate-700 mb-2">
+                                    More Projects Coming Soon
+                                </h3>
+                                <p class="text-slate-500">
+                                    Stay tuned for upcoming projects!
+                                </p>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </section>
@@ -950,11 +1038,11 @@
                     <!-- Section Header -->
                     <div class="text-center mb-16 reveal">
                         <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                            Sertifikat & <span class="gradient-text">Galeri</span>
+                            Sertificates & <span class="gradient-text">Gallery</span>
                         </h2>
                         <div class="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full"></div>
                         <p class="text-slate-600 mt-4 max-w-2xl mx-auto">
-                            Dokumentasi pencapaian, sertifikat, dan momen berkesan selama berkarya di bidang IT.
+                            Dokumentation of my certifications and memorable experiences.
                         </p>
                     </div>
 
@@ -962,7 +1050,7 @@
                     <div class="mb-16">
                         <h3 class="text-2xl font-bold text-slate-900 mb-8 text-center reveal">
                             <i class="fas fa-certificate text-amber-500 mr-2"></i>
-                            Sertifikat Profesional
+                            My Certificates
                         </h3>
                         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <!-- Certificate 1 -->
@@ -1015,6 +1103,31 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Certificate 2 -->
+                            <div
+                                class="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all reveal">
+                                <img src="images/Sertifikat Magang Berdampak 2025 -Luqmanul_page-0001.jpg"
+                                    alt="Digital Mindset Certificate"
+                                    class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                                    <div class="text-white w-full">
+                                        <h4 class="font-bold text-lg mb-2">Certificate Magang Berdampak 2025</h4>
+                                        <p class="text-sm text-slate-200 mb-3">ID: -</p>
+                                        <div class="flex gap-2">
+                                            <a href="#"
+                                                class="px-4 py-2 bg-white text-slate-900 rounded-lg text-sm font-semibold hover:bg-slate-100 transition">
+                                                <i class="fas fa-download mr-1"></i> Download
+                                            </a>
+                                            <a href="images/Sertifikat Magang Berdampak 2025 -Luqmanul.pdf"
+                                                target="_blank"
+                                                class="px-4 py-2 bg-amber-400 text-slate-900 rounded-lg text-sm font-semibold hover:bg-amber-300 transition">
+                                                <i class="fas fa-check-circle mr-1"></i> Verify
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <!-- Coming Soon -->
                             <div class="reveal">
@@ -1034,7 +1147,7 @@
                     <div class="mb-16">
                         <h3 class="text-2xl font-bold text-slate-900 mb-8 text-center reveal">
                             <i class="fas fa-images text-indigo-500 mr-2"></i>
-                            Dokumentasi Pengalaman
+                            Dokumentation of my memorable experiences
                         </h3>
                         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <!-- Gallery Item 1 -->
@@ -1044,7 +1157,7 @@
                                     class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                                    <p class="text-white font-semibold">Presentasi Sistem Management Berbasis Website
+                                    <p class="text-white font-semibold">Presentation System Management Web-Based
                                     </p>
                                 </div>
                             </div>
@@ -1056,7 +1169,7 @@
                                     class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                                    <p class="text-white font-semibold">Pemberian Sertifikat Junior Network
+                                    <p class="text-white font-semibold">Receiving a certificate as a Junior Network
                                         Administrator</p>
                                 </div>
                             </div>
@@ -1068,7 +1181,17 @@
                                     class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                                    <p class="text-white font-semibold">Asrod PU Mengajar di SRMA 21 Surabaya UNESA</p>
+                                    <p class="text-white font-semibold">Asrod PU Mengajar in SRMA 21 Surabaya UNESA</p>
+                                </div>
+                            </div>
+                            <!-- Gallery Item 4 -->
+                            <div
+                                class="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all reveal">
+                                <img src="images/gallery4.jpg" alt="PU Mengajar"
+                                    class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                                    <p class="text-white font-semibold">Offboarding Magang Berdampak 2025</p>
                                 </div>
                             </div>
 
@@ -1126,16 +1249,16 @@
                     </h1>
 
                     <p class="text-lg md:text-2xl text-slate-300 max-w-2xl">
-                        Lihat koleksi lengkap dokumentasi fotografi dan videografi saya di galeri online.
+                        View the complete collection of my photography and videography work in the online gallery.
                     </p>
 
-                    <a href="#" class="inline-flex items-center gap-3 px-12 py-4
+                    <a href="uhygrapy.html" class="inline-flex items-center gap-3 px-12 py-4
                   bg-white text-slate-900
                   rounded-full font-bold text-lg
                   hover:bg-slate-100 hover:scale-105
                   transition-all shadow-2xl">
                         <i class="fas fa-camera"></i>
-                        Kunjungi Website
+                        Visit for more
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -1158,12 +1281,13 @@
                     <!-- Section Header -->
                     <div class="text-center mb-16 reveal">
                         <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                            Hubungi <span class="gradient-text">Saya</span>
+                            Contact <span class="gradient-text">Me</span>
                         </h2>
                         <div class="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full"></div>
                         <p class="text-slate-600 mt-4 max-w-2xl mx-auto">
-                            Punya proyek menarik atau ingin berkolaborasi? Mari kita diskusikan!
+                            Have an interesting project or want to collaborate? Let’s discuss it!
                         </p>
+
                     </div>
 
                     <div class="grid lg:grid-cols-2 gap-12">
@@ -1293,7 +1417,7 @@
                         </div>
 
                         <p class="text-slate-400 text-lg">
-                            Web Developer & Junior Network Administrator
+                            Web Developer, Network Administrator, Videographer and Photographer.
                         </p>
 
                         <!-- Social Links -->
@@ -1327,6 +1451,43 @@
     </main>
 
     <!-- JavaScript -->
+    <script>
+        const card = document.getElementById("heroCard");
+        const logos = ["images/html.png", "images/css.png", "images/js.png", "images/php.png", "images/laravel.png", "images/tailwind.png", "images/ubuntu.png", "images/linux.png", "images/mysql.png"];
+
+        const MAX = 10;
+        const INTERVAL = 700;
+
+        function rand(min, max) { return Math.random() * (max - min) + min; }
+
+        setInterval(() => {
+            if (!card) return;
+
+            // batasi jumlah elemen biar ringan
+            if (card.querySelectorAll(".flying-logo").length >= MAX) return;
+
+            const img = document.createElement("img");
+            img.src = logos[Math.floor(Math.random() * logos.length)];
+            img.className = "flying-logo";
+
+            const w = card.clientWidth;
+            const h = card.clientHeight;
+
+            // start posisi random (bagian bawah card)
+            const startLeft = rand(0, w - 60);
+            const drift = rand(-60, 60);         // geser kiri/kanan
+            const dur = rand(5, 8).toFixed(2);   // durasi random
+
+            img.style.left = startLeft + "px";
+            img.style.bottom = "-60px";
+            img.style.setProperty("--x1", drift + "px");
+            img.style.setProperty("--dur", dur + "s");
+
+            card.appendChild(img);
+            img.addEventListener("animationend", () => img.remove());
+        }, INTERVAL);
+    </script>
+
     <script>
         // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1413,6 +1574,36 @@
 
         window.addEventListener('scroll', animateProgressBars);
     </script>
+    <script>
+        const texts = ["Uhycore_"];
+        const el = document.getElementById("typing-text");
+
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const current = texts[textIndex];
+
+            if (!isDeleting) {
+                el.textContent = current.slice(0, ++charIndex);
+                el.classList.add("cursor");
+                if (charIndex === current.length) {
+                    setTimeout(() => isDeleting = true, 1800);
+                }
+            } else {
+                el.textContent = current.slice(0, --charIndex);
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                }
+            }
+            setTimeout(typeEffect, isDeleting ? 80 : 120);
+        }
+
+        typeEffect();
+    </script>
+
 
 </body>
 
