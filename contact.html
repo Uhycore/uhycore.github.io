@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Uhygrapy</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        .navbar {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .input-field {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-submit {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            padding: 0.75rem 2rem;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 bg-black/40 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold tracking-tight hover:text-gray-300 transition">
+                Uhygrapy
+            </a>
+            <ul class="flex gap-8 text-sm">
+                <li><a href="index.html" class="hover:text-gray-300 transition-colors">Uhycore</a></li>
+                <li><a href="uhygrapy.html" class="hover:text-gray-300 transition-colors">Work</a></li>
+                <li><a href="gear.html" class="hover:text-gray-300 transition-colors">Gear</a></li>
+                <li><a href="contact.html" class="text-white">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="max-w-2xl w-full text-center fade-in">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">Get in Touch</h1>
+            <p class="text-lg text-gray-400 mb-12">
+                Punya project, kolaborasi, atau sekadar ingin berdiskusi tentang fotografi?
+                Hubungi saya melalui form di bawah atau langsung ke social media.
+            </p>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="max-w-4xl mx-auto px-6 pb-32">
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+            <!-- EMAIL -->
+            <div class="contact-card fade-in" style="animation-delay: 0.1s;">
+                <div class="mb-4 text-2xl">✉️</div>
+                <h3 class="text-lg font-semibold mb-2">Email</h3>
+                <a href="mailto:contact@uhygrapy.com" class="text-gray-400 hover:text-white transition">
+                    contact@uhygrapy.com
+                </a>
+            </div>
+
+            <!-- INSTAGRAM -->
+            <div class="contact-card fade-in" style="animation-delay: 0.2s;">
+                <div class="mb-4 text-2xl">📱</div>
+                <h3 class="text-lg font-semibold mb-2">Instagram</h3>
+                <a href="https://instagram.com/uhygrapy" target="_blank"
+                    class="text-gray-400 hover:text-white transition">
+                    @uhygrapy
+                </a>
+            </div>
+
+            <!-- LOCATION -->
+            <div class="contact-card fade-in" style="animation-delay: 0.3s;">
+                <div class="mb-4 text-2xl">📍</div>
+                <h3 class="text-lg font-semibold mb-2">Location</h3>
+                <p class="text-gray-400">Indonesia</p>
+            </div>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="contact-card fade-in" style="animation-delay: 0.4s;">
+            <h2 class="text-2xl font-bold mb-8">Send a Message</h2>
+            <form class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Name</label>
+                        <input type="text" placeholder="Your name" class="input-field w-full" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Email</label>
+                        <input type="email" placeholder="your@email.com" class="input-field w-full" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">Subject</label>
+                    <input type="text" placeholder="What's this about?" class="input-field w-full" required>
+                </div>
+
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">Message</label>
+                    <textarea placeholder="Tell me more about your project or inquiry..."
+                        class="input-field w-full h-32 resize-none" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit w-full">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between gap-4">
+            <p class="text-sm text-gray-500">
+                © 2025 Uhygrapy — Street, travel & lifestyle photography
+            </p>
+            <a href="https://instagram.com/uhygrapy"
+                class="text-sm text-gray-400 hover:text-white transition">Instagram</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

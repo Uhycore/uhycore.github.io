@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uhygrapy – Work & Gear</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        .navbar {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* ===== Gallery Animation ===== */
+        .gallery-item {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .gallery-item:nth-child(n) {
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gallery-item img {
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.7);
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        /* ===== Gear Card ===== */
+        .gear-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1.5rem;
+            padding: 3rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .gear-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .gear-image {
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .gear-image img {
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.6));
+        }
+
+        .spec {
+            border-left: 2px solid rgba(255, 255, 255, 0.3);
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 bg-black/40 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-tight hover:text-gray-300 transition">
+                Uhygrapy
+            </a>
+            <ul class="flex gap-8 text-sm">
+                <li><a href="index.html" class="hover:text-gray-300 transition-colors">Uhycore</a></li>
+                <li><a href="uhygrapy.html" class="hover:text-gray-300 transition-colors">Work</a></li>
+                <li><a href="gear.html" class="hover:text-gray-300">Gear</a></li>
+                <li><a href="contact.html" class="hover:text-gray-300">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <!-- GEAR -->
+    <section id="gear" class="mt-32 max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-12 text-center">Photography Gear</h2>
+
+        <div class="grid md:grid-cols-2 gap-10">
+            <!-- CAMERA -->
+            <div class="gear-card">
+                <div class="gear-image">
+                    <img src="/images/sony a6400.png" alt="Camera">
+                </div>
+                <h3 class="text-2xl font-semibold mb-3">Camera Body</h3>
+                <p class="text-gray-400 mb-6">
+                    Mirrorless camera untuk street, travel, dan dokumentasi dengan performa cepat dan akurat.
+                </p>
+
+                <div class="space-y-3 text-sm">
+                    <div class="spec">
+                        <p class="text-gray-400">Sensor</p>
+                        <p>APS-C</p>
+                    </div>
+                    <div class="spec">
+                        <p class="text-gray-400">Resolution</p>
+                        <p>24.2 MP</p>
+                    </div>
+                    <div class="spec">
+                        <p class="text-gray-400">Video</p>
+                        <p>4K</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LENS -->
+            <div class="gear-card">
+                <div class="gear-image">
+                    <img src="/images/viltrox 35mm 1.7.png" alt="Lens">
+                </div>
+                <h3 class="text-2xl font-semibold mb-3">Lens</h3>
+                <p class="text-gray-400 mb-6">
+                    Prime lens ringan dengan karakter tajam dan bokeh halus, cocok buat street & portrait.
+                </p>
+
+                <div class="space-y-3 text-sm">
+                    <div class="spec">
+                        <p class="text-gray-400">Focal Length</p>
+                        <p>35mm</p>
+                    </div>
+                    <div class="spec">
+                        <p class="text-gray-400">Aperture</p>
+                        <p>f/1.7</p>
+                    </div>
+                    <div class="spec">
+                        <p class="text-gray-400">Focus</p>
+                        <p>Autofocus</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="border-t border-white/10 mt-32">
+        <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between gap-4">
+            <p class="text-sm text-gray-500">
+                © 2025 Uhygrapy — Street, travel & lifestyle photography
+            </p>
+            <a href="#" class="text-sm text-gray-400 hover:text-white">Instagram</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
