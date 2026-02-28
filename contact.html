@@ -2,16 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact — Uhygrapy</title>
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Font -->
+    <!-- Font Awesome (icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-hover: rgba(255, 255, 255, 0.08);
+        }
 
         * {
             margin: 0;
@@ -26,69 +34,81 @@
         }
 
         .navbar {
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-        }
-
-        .contact-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1.5rem;
-            padding: 2rem;
+            border-radius: 1.25rem;
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
         }
 
-        .contact-card:hover {
+        .glass:hover {
+            background: var(--glass-hover);
             border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-4px);
         }
 
-        .input-field {
+        .input-dark {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0.75rem;
-            padding: 0.75rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
             color: #fff;
-            transition: all 0.3s ease;
+            border-radius: 0.9rem;
+            padding: 0.85rem 1rem;
+            outline: none;
+            transition: all 0.25s ease;
         }
 
-        .input-field:focus {
-            outline: none;
-            border-color: rgba(255, 255, 255, 0.3);
+        .input-dark::placeholder {
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .input-dark:focus {
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
             background: rgba(255, 255, 255, 0.08);
         }
 
-        .input-field::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        .btn-submit {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 0.75rem;
-            padding: 0.75rem 2rem;
-            color: #fff;
+        .btn-white {
+            background: #fff;
+            color: #000;
+            border-radius: 0.95rem;
             font-weight: 600;
-            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .btn-submit:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.4);
+        .btn-white:hover {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #fff;
             transform: translateY(-2px);
         }
 
-        .fade-in {
-            animation: fadeIn 0.6s ease forwards;
+        .divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+        .map-frame {
+            border-radius: 1.25rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        }
 
+        .reveal {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: reveal 0.6s ease forwards;
+        }
+
+        @keyframes reveal {
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -98,6 +118,7 @@
 </head>
 
 <body>
+    <div class="bg-ambient"></div>
 
     <!-- NAVBAR -->
     <nav class="navbar fixed top-0 left-0 right-0 z-50 bg-black/40 border-b border-white/10">
@@ -105,98 +126,193 @@
             <a href="index.html" class="text-xl font-bold tracking-tight hover:text-gray-300 transition">
                 Uhygrapy
             </a>
-            <ul class="flex gap-8 text-sm">
-                <li><a href="index.html" class="hover:text-gray-300 transition-colors">Uhycore</a></li>
-                <li><a href="uhygrapy.html" class="hover:text-gray-300 transition-colors">Work</a></li>
-                <li><a href="gear.html" class="hover:text-gray-300 transition-colors">Gear</a></li>
-                <li><a href="contact.html" class="text-white">Contact</a></li>
+            <ul class="flex gap-8 text-sm text-gray-200">
+                <li><a href="index.html" class="hover:text-white transition-colors">Uhycore</a></li>
+                <li><a href="uhygrapy.html" class="hover:text-white transition-colors">Work</a></li>
+                <li><a href="gear.html" class="hover:text-white transition-colors">Gear</a></li>
+                <li><a href="contact.html" class="text-white font-semibold">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="min-h-screen flex items-center justify-center pt-20 px-6">
-        <div class="max-w-2xl w-full text-center fade-in">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">Get in Touch</h1>
-            <p class="text-lg text-gray-400 mb-12">
-                Punya project, kolaborasi, atau sekadar ingin berdiskusi tentang fotografi?
-                Hubungi saya melalui form di bawah atau langsung ke social media.
-            </p>
+    <!-- HERO / HEADER -->
+    <section class="pt-28 pb-10 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center reveal">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    Contact <span class="gradient-text">Me</span>
+                </h1>
+                <div class="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full opacity-90">
+                </div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                    <!-- bahasa indnesia -->
+                    Ingin bekerja sama atau punya pertanyaan? Jangan ragu untuk menghubungi saya! Saya selalu terbuka
+                    untuk diskusi tentang proyek fotografi, kolaborasi kreatif, atau sekadar berbagi cerita di balik
+                    lensa. Kirim pesan melalui formulir di bawah ini atau langsung ke WhatsApp saya. Saya akan dengan
+                    senang hati mendengar dari Anda!
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
-    <section class="max-w-4xl mx-auto px-6 pb-32">
-        <div class="grid md:grid-cols-3 gap-8 mb-16">
-            <!-- EMAIL -->
-            <div class="contact-card fade-in" style="animation-delay: 0.1s;">
-                <div class="mb-4 text-2xl">✉️</div>
-                <h3 class="text-lg font-semibold mb-2">Email</h3>
-                <a href="mailto:contact@uhygrapy.com" class="text-gray-400 hover:text-white transition">
-                    contact@uhygrapy.com
-                </a>
-            </div>
+    <!-- CONTACT SECTION (Dark Glassy) -->
+    <section id="contact" class="pb-28 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-10">
 
-            <!-- INSTAGRAM -->
-            <div class="contact-card fade-in" style="animation-delay: 0.2s;">
-                <div class="mb-4 text-2xl">📱</div>
-                <h3 class="text-lg font-semibold mb-2">Instagram</h3>
-                <a href="https://instagram.com/uhygrapy" target="_blank"
-                    class="text-gray-400 hover:text-white transition">
-                    @uhygrapy
-                </a>
-            </div>
+                <!-- Contact Form -->
+                <div class="reveal" style="animation-delay: 0.08s;">
+                    <form onsubmit="event.preventDefault(); sendMessage();" class="glass p-8">
+                        <h2 class="text-2xl font-bold mb-6">
+                            <i class="fas fa-paper-plane text-indigo-400 mr-2"></i>
+                            Send Message
+                        </h2>
 
-            <!-- LOCATION -->
-            <div class="contact-card fade-in" style="animation-delay: 0.3s;">
-                <div class="mb-4 text-2xl">📍</div>
-                <h3 class="text-lg font-semibold mb-2">Location</h3>
-                <p class="text-gray-400">Indonesia</p>
-            </div>
-        </div>
+                        <div class="space-y-5">
+                            <div>
+                                <label for="name" class="block text-sm font-semibold text-gray-200 mb-2">
+                                    <i class="fas fa-user mr-2 text-gray-400"></i>Name
+                                </label>
+                                <input id="name" type="text" placeholder="Your Name" required
+                                    class="input-dark w-full" />
+                            </div>
 
-        <!-- CONTACT FORM -->
-        <div class="contact-card fade-in" style="animation-delay: 0.4s;">
-            <h2 class="text-2xl font-bold mb-8">Send a Message</h2>
-            <form class="space-y-6">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-sm text-gray-400 mb-2">Name</label>
-                        <input type="text" placeholder="Your name" class="input-field w-full" required>
+                            <div>
+                                <label for="email" class="block text-sm font-semibold text-gray-200 mb-2">
+                                    <i class="fas fa-envelope mr-2 text-gray-400"></i>Email
+                                </label>
+                                <input id="email" type="email" placeholder="your.email@example.com" required
+                                    class="input-dark w-full" />
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-sm font-semibold text-gray-200 mb-2">
+                                    <i class="fas fa-comment-dots mr-2 text-gray-400"></i>Message
+                                </label>
+                                <textarea id="message" rows="5" placeholder="Tell me about your project..." required
+                                    class="input-dark w-full resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-gradient w-full py-4 text-white font-bold">
+                                <i class="fab fa-whatsapp mr-2"></i>
+                                Send via WhatsApp
+                            </button>
+
+                            <p class="text-xs text-gray-500 text-center">
+                                This will open WhatsApp with your message pre-filled.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Contact Info & Map -->
+                <div class="space-y-6 reveal" style="animation-delay: 0.14s;">
+                    <!-- Contact Info -->
+                    <div class="glass p-8">
+                        <h3 class="text-2xl font-bold mb-6">
+                            <i class="fas fa-address-card text-indigo-400 mr-2"></i>
+                            Contact Info
+                        </h3>
+
+                        <div class="space-y-6">
+                            <!-- Email -->
+                            <div class="flex items-start gap-4 group">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-indigo-600/90 flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110">
+                                    <i class="fas fa-envelope text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-200 mb-1">Email</p>
+                                    <a href="mailto:arilmubin0@gmail.com"
+                                        class="text-gray-300 hover:text-white transition">
+                                        arilmubin0@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="divider"></div>
+
+                            <!-- WhatsApp -->
+                            <div class="flex items-start gap-4 group">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-emerald-600/90 flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110">
+                                    <i class="fab fa-whatsapp text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-200 mb-1">WhatsApp</p>
+                                    <a href="https://wa.me/6285647234364" target="_blank"
+                                        class="text-gray-300 hover:text-white transition">
+                                        +62 856-4723-4364
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="divider"></div>
+
+                            <!-- Location -->
+                            <div class="flex items-start gap-4 group">
+                                <div
+                                    class="w-12 h-12 rounded-xl bg-purple-600/90 flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110">
+                                    <i class="fas fa-map-marker-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-200 mb-1">Location</p>
+                                    <p class="text-gray-400 text-sm leading-relaxed">
+                                        Kemangsen, Balongbendo<br />
+                                        Sidoarjo, Jawa Timur
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-sm text-gray-400 mb-2">Email</label>
-                        <input type="email" placeholder="your@email.com" class="input-field w-full" required>
+
+                    <!-- Google Maps -->
+                    <div class="map-frame h-80">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d511.8190341895391!2d112.55884933971679!3d-7.415373585410397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1731902219701!5m2!1sid!2sid"
+                            class="w-full h-full" style="border:0" allowfullscreen="" loading="lazy">
+                        </iframe>
                     </div>
                 </div>
 
-                <div>
-                    <label class="block text-sm text-gray-400 mb-2">Subject</label>
-                    <input type="text" placeholder="What's this about?" class="input-field w-full" required>
-                </div>
-
-                <div>
-                    <label class="block text-sm text-gray-400 mb-2">Message</label>
-                    <textarea placeholder="Tell me more about your project or inquiry..."
-                        class="input-field w-full h-32 resize-none" required></textarea>
-                </div>
-
-                <button type="submit" class="btn-submit w-full">Send Message</button>
-            </form>
+            </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="border-t border-white/10">
+    <footer class="border-t border-white/10 bg-black">
         <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between gap-4">
             <p class="text-sm text-gray-500">
                 © 2025 Uhygrapy — Street, travel & lifestyle photography
             </p>
-            <a href="https://instagram.com/uhygrapy"
-                class="text-sm text-gray-400 hover:text-white transition">Instagram</a>
+            <a href="https://instagram.com/uhygrapy" target="_blank"
+                class="text-sm text-gray-400 hover:text-white transition">
+                Instagram
+            </a>
         </div>
     </footer>
 
+    <script>
+        function sendMessage() {
+            // Format internasional tanpa "+"
+            const phoneNumber = "6285647234364";
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            if (!name || !email || !message) return;
+
+            const text =
+                `Hi Uhygrapy!%0A` +
+                `Name: ${encodeURIComponent(name)}%0A` +
+                `Email: ${encodeURIComponent(email)}%0A%0A` +
+                `${encodeURIComponent(message)}`;
+
+            const waUrl = `https://wa.me/${phoneNumber}?text=${text}`;
+            window.open(waUrl, "_blank", "noopener,noreferrer");
+        }
+    </script>
 </body>
 
 </html>
