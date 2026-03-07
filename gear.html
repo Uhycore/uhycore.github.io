@@ -38,14 +38,16 @@
         }
 
         html {
-            scroll-behavior: smooth
+            scroll-behavior: smooth;
+            overflow-x: hidden
         }
 
         body {
             font-family: var(--font-b);
             background: var(--bg);
             color: var(--text);
-            -webkit-font-smoothing: antialiased
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden
         }
 
         ::-webkit-scrollbar {
@@ -88,7 +90,8 @@
             font-size: 1.2rem;
             color: var(--text);
             text-decoration: none;
-            letter-spacing: -.02em
+            letter-spacing: -.02em;
+            flex-shrink: 0
         }
 
         .nav-logo span {
@@ -106,7 +109,8 @@
             color: var(--text-3);
             text-decoration: none;
             transition: color .25s;
-            font-weight: 500
+            font-weight: 500;
+            white-space: nowrap
         }
 
         .nav-links a:hover,
@@ -166,7 +170,9 @@
             padding: 2.5rem 2rem;
             transition: all .3s ease;
             opacity: 0;
-            animation: fadeUp .6s ease-out forwards
+            animation: fadeUp .6s ease-out forwards;
+            overflow: hidden;
+            min-width: 0;
         }
 
         .gear-card:nth-child(1) {
@@ -188,7 +194,9 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 2rem;
-            position: relative
+            position: relative;
+            overflow: hidden;
+            width: 100%;
         }
 
         .gear-img::after {
@@ -204,9 +212,10 @@
 
         .gear-img img {
             max-height: 100%;
+            max-width: 100%;
             object-fit: contain;
             filter: drop-shadow(0 12px 28px rgba(0, 0, 0, .5));
-            transition: transform .4s ease
+            transition: transform .4s ease;
         }
 
         .gear-card:hover .gear-img img {
@@ -257,7 +266,8 @@
             padding: .75rem 1rem;
             background: var(--bg-el);
             border-radius: 10px;
-            border: 1px solid var(--border)
+            border: 1px solid var(--border);
+            min-width: 0
         }
 
         .spec-icon {
@@ -334,12 +344,16 @@
                 grid-template-columns: 1fr
             }
 
+            .nav-inner {
+                padding: 1rem 1.25rem
+            }
+
             .nav-links {
-                gap: 1.25rem
+                gap: 1rem
             }
 
             .nav-links a {
-                font-size: .8rem
+                font-size: .78rem
             }
 
             .page-hero {
@@ -350,9 +364,31 @@
                 padding: 1.5rem 1.25rem 4rem
             }
 
+            .gear-card {
+                padding: 1.5rem 1.25rem
+            }
+
+            .gear-img {
+                height: 220px
+            }
+
+            .gear-card h3 {
+                font-size: 1.15rem
+            }
+
             .footer-inner {
                 flex-direction: column;
                 gap: .75rem
+            }
+        }
+
+        @media(max-width:400px) {
+            .gear-img {
+                height: 180px
+            }
+
+            .gear-card {
+                padding: 1.25rem 1rem
             }
         }
     </style>

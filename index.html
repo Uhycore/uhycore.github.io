@@ -298,7 +298,6 @@
             height: 10px;
         }
 
-        /* Animasi equalizer saat playing */
         .music-player.playing .eq-bar {
             background: var(--accent);
             animation: eqBounce .8s ease-in-out infinite alternate;
@@ -338,7 +337,6 @@
             }
         }
 
-        /* Play/Pause button */
         .music-btn {
             width: 32px;
             height: 32px;
@@ -556,7 +554,9 @@
             align-items: center;
             gap: .6rem;
             opacity: 0;
-            animation: fadeUp .6s .7s ease-out forwards
+            animation: fadeUp .6s .7s ease-out forwards;
+            position: relative;
+            z-index: 5;
         }
 
         .social-lbl {
@@ -755,7 +755,8 @@
             letter-spacing: .12em;
             text-transform: uppercase;
             opacity: 0;
-            animation: fadeUp .6s 1.1s ease-out forwards
+            animation: fadeUp .6s 1.1s ease-out forwards;
+            z-index: 1;
         }
 
         .scroll-ind:hover {
@@ -1717,6 +1718,17 @@
             .stats-grid {
                 grid-template-columns: repeat(4, 1fr)
             }
+
+            /* FIX 1: Stat cards tetap muncul, reposisi ke dalam foto */
+            .stat-f-1 {
+                right: -70px;
+                top: 20px;
+            }
+
+            .stat-f-2 {
+                left: -70px;
+                bottom: 70px;
+            }
         }
 
         @media(max-width:768px) {
@@ -1765,10 +1777,6 @@
                 grid-template-columns: 1fr
             }
 
-            .stat-f {
-                display: none
-            }
-
             .photo-frame {
                 display: none
             }
@@ -1779,6 +1787,47 @@
 
             .section-pad {
                 padding: 4rem 1.25rem
+            }
+
+            /* FIX 1: Stat cards — tampil di dalam foto pada mobile */
+            .stat-f {
+                /* TIDAK display:none — tetap tampil */
+                padding: .5rem .8rem;
+                border-radius: 10px;
+            }
+
+            .stat-f-1 {
+                top: 70px;
+                right: -10px;
+            }
+
+            .stat-f-2 {
+                bottom: 70px;
+                left: -10px;
+            }
+
+            .stat-ico {
+                width: 28px;
+                height: 28px;
+                font-size: .75rem;
+            }
+
+            .stat-val {
+                font-size: .82rem;
+            }
+
+            .stat-lbl {
+                font-size: .58rem;
+            }
+
+            /* FIX 2: Scroll indicator — sembunyikan di mobile agar tidak timpa social row */
+            .scroll-ind {
+                display: none;
+            }
+
+            /* Extra: tambah padding bawah hero agar social row tidak terpotong sidebar */
+            .hero-inner {
+                padding-bottom: 5rem;
             }
         }
 
@@ -1828,7 +1877,6 @@
                 <div class="hero-grid">
                     <div>
                         <div class="status-badge"><span class="status-dot"></span>Terbuka untuk Kolaborasi</div>
-                        <!-- Music Player (ganti badge Play Music lama) -->
                         <div class="music-player" id="musicPlayer" onclick="toggleMusic()">
                             <div class="eq-bars">
                                 <div class="eq-bar"></div>
@@ -2141,10 +2189,8 @@
                             <p>Aplikasi web booking dan monitoring hunian ruangan dibangun dengan Laravel dan Bootstrap,
                                 dilengkapi monitoring real-time.</p>
                             <div class="proj-tags"><span>Laravel</span><span>Bootstrap</span><span>MySQL</span></div>
-                            <div class="proj-actions"><a href="https://topang.bapekom6sby.com" class="primary" target="_blank"><i
-                                        class="fas fa-external-link-alt"></i> Demo</a>
-                                <!-- <a href="#" class="secondary"><i class="fab fa-github"></i></a> -->
-                            </div>
+                            <div class="proj-actions"><a href="https://topang.bapekom6sby.com" class="primary"
+                                    target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a></div>
                         </div>
                     </div>
                     <div class="proj-card reveal">
@@ -2158,14 +2204,11 @@
                                 point yang dikelola melalui Ruijie Cloud.</p>
                             <div class="proj-tags"><span>Router</span><span>Switch</span><span>Access Point</span></div>
                             <div class="proj-actions"><a href="#" class="primary"><i
-                                        class="fas fa-external-link-alt"></i> Lihat</a>
-                                <!-- <a href="#" class="secondary"><i class="fas fa-info-circle"></i></a> -->
-                            </div>
+                                        class="fas fa-external-link-alt"></i> Lihat</a></div>
                         </div>
                     </div>
                     <div class="proj-card reveal">
-                        <div class="proj-img"><img src="images/transkom.png"
-                                alt="Network">
+                        <div class="proj-img"><img src="images/transkom.png" alt="Network">
                             <div class="ov"></div>
                         </div>
                         <div class="proj-body">
@@ -2173,16 +2216,10 @@
                             <p>Aplikasi web Peminjaman Transportasi Bapekom dibangun dengan Laravel dan tailwind,
                                 dilengkapi monitoring real-time.</p>
                             <div class="proj-tags"><span>Laravel</span><span>Tailwind</span><span>MySQL</span></div>
-                            <div class="proj-actions"><a href="https://transkom.bapekom6sby.com" class="primary" target="_blank"><i
-                                        class="fas fa-external-link-alt"></i> Demo</a>
-                                <!-- <a href="#" class="secondary"><i class="fas fa-info-circle"></i></a> -->
-                            </div>
+                            <div class="proj-actions"><a href="https://transkom.bapekom6sby.com" class="primary"
+                                    target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a></div>
                         </div>
                     </div>
-                    <!-- <div class="proj-soon reveal"><i class="fas fa-plus"></i>
-                        <h3>Segera Hadir</h3>
-                        <p>Nantikan proyek-proyek berikutnya!</p>
-                    </div> -->
                 </div>
             </div>
         </section>
@@ -2199,8 +2236,7 @@
 
                 <h3 class="reveal"
                     style="font-family:var(--font-d);font-size:1rem;font-weight:600;color:var(--accent);margin-top:2.5rem;margin-bottom:1.25rem;letter-spacing:.04em;text-transform:uppercase">
-                    <i class="fas fa-certificate" style="margin-right:.4rem"></i>Sertifikat
-                </h3>
+                    <i class="fas fa-certificate" style="margin-right:.4rem"></i>Sertifikat</h3>
                 <div class="gallery-grid">
                     <div class="gallery-item reveal">
                         <img src="images/Sertifikat_LUQMANUL ASYRARIL MUBIN_Junior Network Administrator_page-0001.jpg"
@@ -2240,8 +2276,7 @@
 
                 <h3 class="reveal"
                     style="font-family:var(--font-d);font-size:1rem;font-weight:600;color:var(--accent);margin-top:2.5rem;margin-bottom:1.25rem;letter-spacing:.04em;text-transform:uppercase">
-                    <i class="fas fa-images" style="margin-right:.4rem"></i>Dokumentasi
-                </h3>
+                    <i class="fas fa-images" style="margin-right:.4rem"></i>Dokumentasi</h3>
                 <div class="gallery-grid">
                     <div class="gallery-item reveal"><img src="images/gallery1.jpg" alt="Presentasi">
                         <div class="cap">
@@ -2403,6 +2438,7 @@
             const t = `Halo Uhygrapy!%0ANama: ${encodeURIComponent(n)}%0AEmail: ${encodeURIComponent(e)}%0A%0A${encodeURIComponent(m)}`;
             window.open(`https://wa.me/6285647234364?text=${t}`, '_blank', 'noopener,noreferrer');
         }
+
         // ─── Music Player ───
         const audio = new Audio('music/music.mp3');
         audio.loop = true;
@@ -2432,7 +2468,6 @@
             }
         }
 
-        // Update status saat musik selesai (jika loop dimatikan)
         audio.addEventListener('ended', () => {
             playerEl.classList.remove('playing');
             btnIcon.innerHTML = '<i class="fas fa-play"></i>';
