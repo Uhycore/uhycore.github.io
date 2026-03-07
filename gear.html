@@ -1,201 +1,464 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uhygrapy – Work & Gear</title>
-
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font -->
+    <title>Peralatan — Uhygrapy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box
+        }
+
+        :root {
+            --bg: #0a0a0b;
+            --bg-card: #111113;
+            --bg-el: #18181b;
+            --text: #fafafa;
+            --text-2: #a1a1aa;
+            --text-3: #71717a;
+            --text-4: #52525b;
+            --accent: #c8ff00;
+            --accent-dim: rgba(200, 255, 0, .08);
+            --accent-border: rgba(200, 255, 0, .15);
+            --border: rgba(255, 255, 255, .06);
+            --border-h: rgba(255, 255, 255, .12);
+            --font-d: 'Sora', sans-serif;
+            --font-b: 'Outfit', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #000;
-            color: #fff;
+            font-family: var(--font-b);
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased
         }
 
-        .navbar {
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+        ::-webkit-scrollbar {
+            width: 5px
         }
 
-        /* ===== Gallery Animation ===== */
-        .gallery-item {
-            opacity: 0;
-            animation: fadeInUp 0.6s ease forwards;
+        ::-webkit-scrollbar-track {
+            background: var(--bg)
         }
 
-        .gallery-item:nth-child(n) {
-            animation-delay: calc(0.1s * var(--i));
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-4);
+            border-radius: 3px
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* ─── NAV ─── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 11, .7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border)
         }
 
-        .gallery-item img {
-            transition: transform 0.5s ease, filter 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-            filter: brightness(0.7);
-        }
-
-        .overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.1rem 2rem;
             display: flex;
-            align-items: flex-end;
-            padding: 2rem;
+            justify-content: space-between;
+            align-items: center
         }
 
-        .gallery-item:hover .overlay {
-            opacity: 1;
+        .nav-logo {
+            font-family: var(--font-d);
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -.02em
         }
 
-        /* ===== Gear Card ===== */
+        .nav-logo span {
+            color: var(--accent)
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none
+        }
+
+        .nav-links a {
+            font-size: .85rem;
+            color: var(--text-3);
+            text-decoration: none;
+            transition: color .25s;
+            font-weight: 500
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text)
+        }
+
+        /* ─── HERO ─── */
+        .page-hero {
+            padding: 8rem 2rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .page-hero .label {
+            font-family: var(--font-d);
+            font-size: .75rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: .75rem
+        }
+
+        .page-hero h1 {
+            font-family: var(--font-d);
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -.03em;
+            margin-bottom: 1rem
+        }
+
+        .page-hero p {
+            font-size: 1.05rem;
+            color: var(--text-3);
+            max-width: 560px;
+            line-height: 1.7
+        }
+
+        /* ─── GEAR GRID ─── */
+        .gear-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 6rem
+        }
+
+        .gear-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem
+        }
+
         .gear-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1.5rem;
-            padding: 3rem 2rem;
-            transition: all 0.3s ease;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            transition: all .3s ease;
+            opacity: 0;
+            animation: fadeUp .6s ease-out forwards
+        }
+
+        .gear-card:nth-child(1) {
+            animation-delay: .15s
+        }
+
+        .gear-card:nth-child(2) {
+            animation-delay: .25s
         }
 
         .gear-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: var(--border-h);
+            transform: translateY(-4px)
         }
 
-        .gear-image {
-            height: 320px;
+        .gear-img {
+            height: 280px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 2rem;
+            position: relative
         }
 
-        .gear-image img {
+        .gear-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-h), transparent)
+        }
+
+        .gear-img img {
             max-height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.6));
+            filter: drop-shadow(0 12px 28px rgba(0, 0, 0, .5));
+            transition: transform .4s ease
+        }
+
+        .gear-card:hover .gear-img img {
+            transform: scale(1.03)
+        }
+
+        .gear-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .3rem .7rem;
+            background: var(--accent-dim);
+            border: 1px solid var(--accent-border);
+            border-radius: 6px;
+            font-size: .68rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            margin-bottom: .75rem
+        }
+
+        .gear-card h3 {
+            font-family: var(--font-d);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: .5rem
+        }
+
+        .gear-card>p {
+            font-size: .9rem;
+            color: var(--text-3);
+            line-height: 1.7;
+            margin-bottom: 1.5rem
+        }
+
+        .specs {
+            display: flex;
+            flex-direction: column;
+            gap: .75rem
         }
 
         .spec {
-            border-left: 2px solid rgba(255, 255, 255, 0.3);
-            padding-left: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: .75rem 1rem;
+            background: var(--bg-el);
+            border-radius: 10px;
+            border: 1px solid var(--border)
+        }
+
+        .spec-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 7px;
+            background: var(--accent-dim);
+            color: var(--accent);
+            font-size: .75rem;
+            flex-shrink: 0
+        }
+
+        .spec-label {
+            font-size: .72rem;
+            color: var(--text-4);
+            letter-spacing: .03em
+        }
+
+        .spec-value {
+            font-family: var(--font-d);
+            font-size: .88rem;
+            font-weight: 600;
+            color: var(--text)
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 2rem;
+            text-align: center
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .footer p {
+            font-size: .78rem;
+            color: var(--text-4)
+        }
+
+        .footer a {
+            font-size: .78rem;
+            color: var(--text-3);
+            text-decoration: none;
+            transition: color .25s
+        }
+
+        .footer a:hover {
+            color: var(--accent)
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @media(max-width:768px) {
+            .gear-grid {
+                grid-template-columns: 1fr
+            }
+
+            .nav-links {
+                gap: 1.25rem
+            }
+
+            .nav-links a {
+                font-size: .8rem
+            }
+
+            .page-hero {
+                padding: 7rem 1.25rem 2rem
+            }
+
+            .gear-section {
+                padding: 1.5rem 1.25rem 4rem
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: .75rem
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar fixed top-0 left-0 right-0 z-50 bg-black/40 border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold tracking-tight hover:text-gray-300 transition">
-                Uhygrapy
-            </a>
-            <ul class="flex gap-8 text-sm">
-                <li><a href="index.html" class="hover:text-gray-300 transition-colors">Uhycore</a></li>
-                <li><a href="uhygrapy.html" class="hover:text-gray-300 transition-colors">Work</a></li>
-                <li><a href="gear.html" class="hover:text-gray-300">Gear</a></li>
-                <li><a href="contact.html" class="hover:text-gray-300">Contact</a></li>
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="uhygrapy.html" class="nav-logo">Uhy<span>grapy</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Uhycore</a></li>
+                <li><a href="uhygrapy.html">Karya</a></li>
+                <li><a href="gear.html" class="active">Peralatan</a></li>
+                <li><a href="contact.html">Kontak</a></li>
             </ul>
         </div>
     </nav>
 
-
+    <!-- HERO -->
+    <div class="page-hero">
+        <div class="label">Peralatan Fotografi</div>
+        <h1>Gear Saya</h1>
+        <p>Peralatan yang saya gunakan sehari-hari untuk mengabadikan momen — sederhana tapi maksimal.</p>
+    </div>
 
     <!-- GEAR -->
-    <section id="gear" class="mt-32 max-w-7xl mx-auto px-6">
-        <h2 class="text-4xl font-bold mb-12 text-center">Photography Gear</h2>
+    <section class="gear-section">
+        <div class="gear-grid">
 
-        <div class="grid md:grid-cols-2 gap-10">
             <!-- CAMERA -->
             <div class="gear-card">
-                <div class="gear-image">
-                    <img src="/images/sony a6400.png" alt="Camera">
+                <div class="gear-img">
+                    <img src="images/sony a6400.png" alt="Sony A6400">
                 </div>
-                <h3 class="text-2xl font-semibold mb-3">Camera Body</h3>
-                <p class="text-gray-400 mb-6">
-                    Mirrorless camera untuk street, travel, dan dokumentasi dengan performa cepat dan akurat.
-                </p>
-
-                <div class="space-y-3 text-sm">
+                <div class="gear-badge"><i class="fas fa-camera"></i> Kamera</div>
+                <h3>Sony A6400</h3>
+                <p>Kamera mirrorless untuk street, travel, dan dokumentasi dengan performa cepat dan akurat.</p>
+                <div class="specs">
                     <div class="spec">
-                        <p class="text-gray-400">Sensor</p>
-                        <p>APS-C</p>
+                        <div class="spec-icon"><i class="fas fa-microchip"></i></div>
+                        <div>
+                            <div class="spec-label">Sensor</div>
+                            <div class="spec-value">APS-C</div>
+                        </div>
                     </div>
                     <div class="spec">
-                        <p class="text-gray-400">Resolution</p>
-                        <p>24.2 MP</p>
+                        <div class="spec-icon"><i class="fas fa-expand"></i></div>
+                        <div>
+                            <div class="spec-label">Resolusi</div>
+                            <div class="spec-value">24.2 MP</div>
+                        </div>
                     </div>
                     <div class="spec">
-                        <p class="text-gray-400">Video</p>
-                        <p>4K</p>
+                        <div class="spec-icon"><i class="fas fa-film"></i></div>
+                        <div>
+                            <div class="spec-label">Video</div>
+                            <div class="spec-value">4K 30fps</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- LENS -->
             <div class="gear-card">
-                <div class="gear-image">
-                    <img src="/images/viltrox 35mm 1.7.png" alt="Lens">
+                <div class="gear-img">
+                    <img src="images/viltrox 35mm 1.7.png" alt="Viltrox 35mm f/1.7">
                 </div>
-                <h3 class="text-2xl font-semibold mb-3">Lens</h3>
-                <p class="text-gray-400 mb-6">
-                    Prime lens ringan dengan karakter tajam dan bokeh halus, cocok buat street & portrait.
-                </p>
-
-                <div class="space-y-3 text-sm">
+                <div class="gear-badge"><i class="fas fa-circle-dot"></i> Lensa</div>
+                <h3>Viltrox 35mm f/1.7</h3>
+                <p>Prime lens ringan dengan karakter tajam dan bokeh halus, cocok untuk street &amp; portrait.</p>
+                <div class="specs">
                     <div class="spec">
-                        <p class="text-gray-400">Focal Length</p>
-                        <p>35mm</p>
+                        <div class="spec-icon"><i class="fas fa-ruler-horizontal"></i></div>
+                        <div>
+                            <div class="spec-label">Focal Length</div>
+                            <div class="spec-value">35mm</div>
+                        </div>
                     </div>
                     <div class="spec">
-                        <p class="text-gray-400">Aperture</p>
-                        <p>f/1.7</p>
+                        <div class="spec-icon"><i class="fas fa-sun"></i></div>
+                        <div>
+                            <div class="spec-label">Aperture</div>
+                            <div class="spec-value">f/1.7</div>
+                        </div>
                     </div>
                     <div class="spec">
-                        <p class="text-gray-400">Focus</p>
-                        <p>Autofocus</p>
+                        <div class="spec-icon"><i class="fas fa-crosshairs"></i></div>
+                        <div>
+                            <div class="spec-label">Fokus</div>
+                            <div class="spec-value">Autofocus</div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer id="contact" class="border-t border-white/10 mt-32">
-        <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between gap-4">
-            <p class="text-sm text-gray-500">
-                © 2025 Uhygrapy — Street, travel & lifestyle photography
-            </p>
-            <a href="#" class="text-sm text-gray-400 hover:text-white">Instagram</a>
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>&copy; 2025 Uhygrapy — Street, travel &amp; dokumentasi fotografi</p>
+            <a href="https://instagram.com/uhygrapy" target="_blank"><i class="fab fa-instagram"
+                    style="margin-right:.3rem"></i>Instagram</a>
         </div>
     </footer>
 

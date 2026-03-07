@@ -1,316 +1,533 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact — Uhygrapy</title>
-
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome (icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak — Uhygrapy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --glass-hover: rgba(255, 255, 255, 0.08);
-        }
-
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box
+        }
+
+        :root {
+            --bg: #0a0a0b;
+            --bg-card: #111113;
+            --bg-el: #18181b;
+            --text: #fafafa;
+            --text-2: #a1a1aa;
+            --text-3: #71717a;
+            --text-4: #52525b;
+            --accent: #c8ff00;
+            --accent-dim: rgba(200, 255, 0, .08);
+            --accent-border: rgba(200, 255, 0, .15);
+            --border: rgba(255, 255, 255, .06);
+            --border-h: rgba(255, 255, 255, .12);
+            --font-d: 'Sora', sans-serif;
+            --font-b: 'Outfit', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #000;
-            color: #fff;
+            font-family: var(--font-b);
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased
         }
 
-        .navbar {
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+        ::-webkit-scrollbar {
+            width: 5px
         }
 
-        .glass {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 1.25rem;
-            box-shadow:
-                0 10px 40px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
+        ::-webkit-scrollbar-track {
+            background: var(--bg)
         }
 
-        .glass:hover {
-            background: var(--glass-hover);
-            border-color: rgba(255, 255, 255, 0.2);
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-4);
+            border-radius: 3px
         }
 
-        .input-dark {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff;
-            border-radius: 0.9rem;
-            padding: 0.85rem 1rem;
-            outline: none;
-            transition: all 0.25s ease;
+        /* ─── NAV ─── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 11, .7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border)
         }
 
-        .input-dark::placeholder {
-            color: rgba(255, 255, 255, 0.35);
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
         }
 
-        .input-dark:focus {
-            border-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.08);
+        .nav-logo {
+            font-family: var(--font-d);
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -.02em
         }
 
-        .btn-white {
-            background: #fff;
-            color: #000;
-            border-radius: 0.95rem;
+        .nav-logo span {
+            color: var(--accent)
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none
+        }
+
+        .nav-links a {
+            font-size: .85rem;
+            color: var(--text-3);
+            text-decoration: none;
+            transition: color .25s;
+            font-weight: 500
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text)
+        }
+
+        /* ─── HERO ─── */
+        .page-hero {
+            padding: 8rem 2rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center
+        }
+
+        .page-hero .label {
+            font-family: var(--font-d);
+            font-size: .75rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            color: var(--accent);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: .75rem
         }
 
-        .btn-white:hover {
-            background: transparent;
-            color: #fff;
-            border: 1px solid #fff;
-            transform: translateY(-2px);
+        .page-hero h1 {
+            font-family: var(--font-d);
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -.03em;
+            margin-bottom: 1rem
         }
 
-        .divider {
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
+        .page-hero p {
+            font-size: 1rem;
+            color: var(--text-3);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.75
         }
 
-        .map-frame {
-            border-radius: 1.25rem;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        /* ─── CONTACT GRID ─── */
+        .contact-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 6rem
         }
 
-        .reveal {
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem
+        }
+
+        /* Form */
+        .form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
             opacity: 0;
-            transform: translateY(12px);
-            animation: reveal 0.6s ease forwards;
+            animation: fadeUp .6s .1s ease-out forwards
         }
 
-        @keyframes reveal {
+        .form-card h3 {
+            font-family: var(--font-d);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem
+        }
+
+        .form-card h3 i {
+            color: var(--accent);
+            font-size: .9rem
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem
+        }
+
+        .form-group label {
+            display: block;
+            font-size: .78rem;
+            font-weight: 500;
+            color: var(--text-3);
+            margin-bottom: .4rem;
+            letter-spacing: .02em
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: .75rem 1rem;
+            background: var(--bg-el);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: var(--font-b);
+            font-size: .9rem;
+            outline: none;
+            transition: border-color .25s;
+            resize: none
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-border)
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-4)
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: .85rem;
+            background: var(--accent);
+            color: var(--bg);
+            font-family: var(--font-b);
+            font-weight: 600;
+            font-size: .9rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all .25s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem
+        }
+
+        .form-submit:hover {
+            box-shadow: 0 6px 24px rgba(200, 255, 0, .18);
+            transform: translateY(-2px)
+        }
+
+        .form-hint {
+            text-align: center;
+            font-size: .72rem;
+            color: var(--text-4);
+            margin-top: .75rem
+        }
+
+        /* Info */
+        .info-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            opacity: 0;
+            animation: fadeUp .6s .2s ease-out forwards
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem
+        }
+
+        .info-card h3 {
+            font-family: var(--font-d);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem
+        }
+
+        .info-card h3 i {
+            color: var(--accent);
+            font-size: .9rem
+        }
+
+        .ci-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .ci-item:last-child {
+            border-bottom: none
+        }
+
+        .ci-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: .9rem
+        }
+
+        .ci-icon.lime {
+            background: var(--accent-dim);
+            color: var(--accent)
+        }
+
+        .ci-icon.green {
+            background: rgba(52, 211, 153, .1);
+            color: #34d399
+        }
+
+        .ci-icon.blue {
+            background: rgba(96, 165, 250, .1);
+            color: #60a5fa
+        }
+
+        .ci-label {
+            font-size: .72rem;
+            color: var(--text-4);
+            letter-spacing: .03em
+        }
+
+        .ci-value {
+            font-size: .9rem;
+            color: var(--text)
+        }
+
+        .ci-value a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color .25s
+        }
+
+        .ci-value a:hover {
+            color: var(--accent)
+        }
+
+        .map-box {
+            border-radius: 12px;
+            overflow: hidden;
+            height: 220px;
+            border: 1px solid var(--border)
+        }
+
+        .map-box iframe {
+            width: 100%;
+            height: 100%
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 2rem;
+            text-align: center
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .footer p {
+            font-size: .78rem;
+            color: var(--text-4)
+        }
+
+        .footer a {
+            font-size: .78rem;
+            color: var(--text-3);
+            text-decoration: none;
+            transition: color .25s
+        }
+
+        .footer a:hover {
+            color: var(--accent)
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px)
+            }
+
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0)
+            }
+        }
+
+        @media(max-width:768px) {
+            .contact-grid {
+                grid-template-columns: 1fr
+            }
+
+            .nav-links {
+                gap: 1.25rem
+            }
+
+            .nav-links a {
+                font-size: .8rem
+            }
+
+            .page-hero {
+                padding: 7rem 1.25rem 2rem
+            }
+
+            .contact-section {
+                padding: 1.5rem 1.25rem 4rem
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: .75rem
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="bg-ambient"></div>
 
-    <!-- NAVBAR -->
-    <nav class="navbar fixed top-0 left-0 right-0 z-50 bg-black/40 border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <a href="index.html" class="text-xl font-bold tracking-tight hover:text-gray-300 transition">
-                Uhygrapy
-            </a>
-            <ul class="flex gap-8 text-sm text-gray-200">
-                <li><a href="index.html" class="hover:text-white transition-colors">Uhycore</a></li>
-                <li><a href="uhygrapy.html" class="hover:text-white transition-colors">Work</a></li>
-                <li><a href="gear.html" class="hover:text-white transition-colors">Gear</a></li>
-                <li><a href="contact.html" class="text-white font-semibold">Contact</a></li>
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="uhygrapy.html" class="nav-logo">Uhy<span>grapy</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Uhycore</a></li>
+                <li><a href="uhygrapy.html">Karya</a></li>
+                <li><a href="gear.html">Peralatan</a></li>
+                <li><a href="contact.html" class="active">Kontak</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- HERO / HEADER -->
-    <section class="pt-28 pb-10 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center reveal">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">
-                    Contact <span class="gradient-text">Me</span>
-                </h1>
-                <div class="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full opacity-90">
-                </div>
-                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
-                    <!-- bahasa indnesia -->
-                    Ingin bekerja sama atau punya pertanyaan? Jangan ragu untuk menghubungi saya! Saya selalu terbuka
-                    untuk diskusi tentang proyek fotografi, kolaborasi kreatif, atau sekadar berbagi cerita di balik
-                    lensa. Kirim pesan melalui formulir di bawah ini atau langsung ke WhatsApp saya. Saya akan dengan
-                    senang hati mendengar dari Anda!
-                </p>
+    <!-- HERO -->
+    <div class="page-hero">
+        <div class="label">Hubungi Saya</div>
+        <h1>Kontak</h1>
+        <p>Ingin bekerja sama atau punya pertanyaan? Saya selalu terbuka untuk diskusi tentang proyek fotografi,
+            kolaborasi kreatif, atau sekadar berbagi cerita di balik lensa.</p>
+    </div>
+
+    <!-- CONTACT -->
+    <section class="contact-section">
+        <div class="contact-grid">
+
+            <!-- Form -->
+            <div class="form-card">
+                <h3><i class="fas fa-paper-plane"></i> Kirim Pesan</h3>
+                <form onsubmit="event.preventDefault();sendMessage()">
+                    <div class="form-group"><label>Nama</label><input id="name" type="text" placeholder="Nama lengkap"
+                            required></div>
+                    <div class="form-group"><label>Email</label><input id="email" type="email"
+                            placeholder="email@contoh.com" required></div>
+                    <div class="form-group"><label>Pesan</label><textarea id="message" rows="5"
+                            placeholder="Ceritakan tentang proyek Anda..." required></textarea></div>
+                    <button type="submit" class="form-submit"><i class="fab fa-whatsapp"></i> Kirim via
+                        WhatsApp</button>
+                    <p class="form-hint">Akan membuka WhatsApp dengan pesan yang sudah terisi otomatis.</p>
+                </form>
             </div>
-        </div>
-    </section>
 
-    <!-- CONTACT SECTION (Dark Glassy) -->
-    <section id="contact" class="pb-28 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-10">
-
-                <!-- Contact Form -->
-                <div class="reveal" style="animation-delay: 0.08s;">
-                    <form onsubmit="event.preventDefault(); sendMessage();" class="glass p-8">
-                        <h2 class="text-2xl font-bold mb-6">
-                            <i class="fas fa-paper-plane text-indigo-400 mr-2"></i>
-                            Send Message
-                        </h2>
-
-                        <div class="space-y-5">
-                            <div>
-                                <label for="name" class="block text-sm font-semibold text-gray-200 mb-2">
-                                    <i class="fas fa-user mr-2 text-gray-400"></i>Name
-                                </label>
-                                <input id="name" type="text" placeholder="Your Name" required
-                                    class="input-dark w-full" />
-                            </div>
-
-                            <div>
-                                <label for="email" class="block text-sm font-semibold text-gray-200 mb-2">
-                                    <i class="fas fa-envelope mr-2 text-gray-400"></i>Email
-                                </label>
-                                <input id="email" type="email" placeholder="your.email@example.com" required
-                                    class="input-dark w-full" />
-                            </div>
-
-                            <div>
-                                <label for="message" class="block text-sm font-semibold text-gray-200 mb-2">
-                                    <i class="fas fa-comment-dots mr-2 text-gray-400"></i>Message
-                                </label>
-                                <textarea id="message" rows="5" placeholder="Tell me about your project..." required
-                                    class="input-dark w-full resize-none"></textarea>
-                            </div>
-
-                            <button type="submit" class="btn-gradient w-full py-4 text-white font-bold">
-                                <i class="fab fa-whatsapp mr-2"></i>
-                                Send via WhatsApp
-                            </button>
-
-                            <p class="text-xs text-gray-500 text-center">
-                                This will open WhatsApp with your message pre-filled.
-                            </p>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Contact Info & Map -->
-                <div class="space-y-6 reveal" style="animation-delay: 0.14s;">
-                    <!-- Contact Info -->
-                    <div class="glass p-8">
-                        <h3 class="text-2xl font-bold mb-6">
-                            <i class="fas fa-address-card text-indigo-400 mr-2"></i>
-                            Contact Info
-                        </h3>
-
-                        <div class="space-y-6">
-                            <!-- Email -->
-                            <div class="flex items-start gap-4 group">
-                                <div
-                                    class="w-12 h-12 rounded-xl bg-indigo-600/90 flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110">
-                                    <i class="fas fa-envelope text-xl"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-gray-200 mb-1">Email</p>
-                                    <a href="mailto:arilmubin0@gmail.com"
-                                        class="text-gray-300 hover:text-white transition">
-                                        arilmubin0@gmail.com
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="divider"></div>
-
-                            <!-- WhatsApp -->
-                            <div class="flex items-start gap-4 group">
-                                <div
-                                    class="w-12 h-12 rounded-xl bg-emerald-600/90 flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110">
-                                    <i class="fab fa-whatsapp text-xl"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-gray-200 mb-1">WhatsApp</p>
-                                    <a href="https://wa.me/6285647234364" target="_blank"
-                                        class="text-gray-300 hover:text-white transition">
-                                        +62 856-4723-4364
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="divider"></div>
-
-                            <!-- Location -->
-                            <div class="flex items-start gap-4 group">
-                                <div
-                                    class="w-12 h-12 rounded-xl bg-purple-600/90 flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110">
-                                    <i class="fas fa-map-marker-alt text-xl"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-gray-200 mb-1">Location</p>
-                                    <p class="text-gray-400 text-sm leading-relaxed">
-                                        Kemangsen, Balongbendo<br />
-                                        Sidoarjo, Jawa Timur
-                                    </p>
-                                </div>
-                            </div>
+            <!-- Info -->
+            <div class="info-col">
+                <div class="info-card">
+                    <h3><i class="fas fa-address-card"></i> Info Kontak</h3>
+                    <div class="ci-item">
+                        <div class="ci-icon lime"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <div class="ci-label">Email</div>
+                            <div class="ci-value"><a href="mailto:arilmubin0@gmail.com">arilmubin0@gmail.com</a></div>
                         </div>
                     </div>
-
-                    <!-- Google Maps -->
-                    <div class="map-frame h-80">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d511.8190341895391!2d112.55884933971679!3d-7.415373585410397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1731902219701!5m2!1sid!2sid"
-                            class="w-full h-full" style="border:0" allowfullscreen="" loading="lazy">
-                        </iframe>
+                    <div class="ci-item">
+                        <div class="ci-icon green"><i class="fab fa-whatsapp"></i></div>
+                        <div>
+                            <div class="ci-label">WhatsApp</div>
+                            <div class="ci-value"><a href="https://wa.me/6285647234364" target="_blank">+62
+                                    856-4723-4364</a></div>
+                        </div>
+                    </div>
+                    <div class="ci-item">
+                        <div class="ci-icon blue"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <div class="ci-label">Lokasi</div>
+                            <div class="ci-value">Kemangsen, Balongbendo<br>Sidoarjo, Jawa Timur</div>
+                        </div>
                     </div>
                 </div>
 
+                <div class="map-box">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d511.8190341895391!2d112.55884933971679!3d-7.415373585410397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1731902219701!5m2!1sid!2sid"
+                        style="border:0" allowfullscreen loading="lazy"></iframe>
+                </div>
             </div>
+
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="border-t border-white/10 bg-black">
-        <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between gap-4">
-            <p class="text-sm text-gray-500">
-                © 2025 Uhygrapy — Street, travel & lifestyle photography
-            </p>
-            <a href="https://instagram.com/uhygrapy" target="_blank"
-                class="text-sm text-gray-400 hover:text-white transition">
-                Instagram
-            </a>
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>&copy; 2025 Uhygrapy — Street, travel &amp; dokumentasi fotografi</p>
+            <a href="https://instagram.com/uhygrapy" target="_blank"><i class="fab fa-instagram"
+                    style="margin-right:.3rem"></i>Instagram</a>
         </div>
     </footer>
 
     <script>
         function sendMessage() {
-            // Format internasional tanpa "+"
-            const phoneNumber = "6285647234364";
-
-            const name = document.getElementById("name").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const message = document.getElementById("message").value.trim();
-
-            if (!name || !email || !message) return;
-
-            const text =
-                `Hi Uhygrapy!%0A` +
-                `Name: ${encodeURIComponent(name)}%0A` +
-                `Email: ${encodeURIComponent(email)}%0A%0A` +
-                `${encodeURIComponent(message)}`;
-
-            const waUrl = `https://wa.me/${phoneNumber}?text=${text}`;
-            window.open(waUrl, "_blank", "noopener,noreferrer");
+            const n = document.getElementById('name').value.trim();
+            const e = document.getElementById('email').value.trim();
+            const m = document.getElementById('message').value.trim();
+            if (!n || !e || !m) return;
+            const t = `Halo Uhygrapy!%0ANama: ${encodeURIComponent(n)}%0AEmail: ${encodeURIComponent(e)}%0A%0A${encodeURIComponent(m)}`;
+            window.open(`https://wa.me/6285647234364?text=${t}`, '_blank', 'noopener,noreferrer');
         }
     </script>
 </body>
