@@ -1232,11 +1232,7 @@
             font-size: .85rem;
             color: var(--text-3);
             line-height: 1.65;
-            margin-bottom: 1rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden
+            margin-bottom: 1rem
         }
 
         .proj-tags {
@@ -1322,6 +1318,108 @@
         .proj-soon p {
             font-size: .8rem;
             color: var(--text-4)
+        }
+
+        /* ── Project icon-based header (no image) ── */
+        .proj-icon-header {
+            position: relative;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-el);
+            overflow: hidden;
+        }
+
+        .proj-icon-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .02) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+        }
+
+        .proj-icon-header .proj-icon-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .proj-icon-header .proj-icon-circle.teal {
+            background: rgba(45, 212, 191, .12);
+            color: #2dd4bf;
+            border: 1px solid rgba(45, 212, 191, .2);
+        }
+
+        .proj-icon-header .proj-icon-circle.blue {
+            background: rgba(96, 165, 250, .12);
+            color: #60a5fa;
+            border: 1px solid rgba(96, 165, 250, .2);
+        }
+
+        .proj-icon-header .proj-icon-circle.amber {
+            background: rgba(251, 191, 36, .12);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, .2);
+        }
+
+        .proj-icon-header .proj-glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: .15;
+            pointer-events: none;
+        }
+
+        .proj-icon-header .proj-glow.teal {
+            background: #2dd4bf;
+        }
+
+        .proj-icon-header .proj-glow.blue {
+            background: #60a5fa;
+        }
+
+        .proj-icon-header .proj-glow.amber {
+            background: #fbbf24;
+        }
+
+        /* ── Subsection label inside projects ── */
+        .proj-sub-label {
+            font-family: var(--font-d);
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--text-3);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .proj-sub-label i {
+            color: var(--accent);
+            font-size: .75rem;
+        }
+
+        .proj-sub-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+            margin-left: .5rem;
         }
 
         /* ══ GALLERY ══ */
@@ -1719,7 +1817,6 @@
                 grid-template-columns: repeat(4, 1fr)
             }
 
-            /* FIX 1: Stat cards tetap muncul, reposisi ke dalam foto */
             .stat-f-1 {
                 right: -70px;
                 top: 20px;
@@ -1789,9 +1886,7 @@
                 padding: 4rem 1.25rem
             }
 
-            /* FIX 1: Stat cards — tampil di dalam foto pada mobile */
             .stat-f {
-                /* TIDAK display:none — tetap tampil */
                 padding: .5rem .8rem;
                 border-radius: 10px;
             }
@@ -1820,12 +1915,10 @@
                 font-size: .58rem;
             }
 
-            /* FIX 2: Scroll indicator — sembunyikan di mobile agar tidak timpa social row */
             .scroll-ind {
                 display: none;
             }
 
-            /* Extra: tambah padding bawah hero agar social row tidak terpotong sidebar */
             .hero-inner {
                 padding-bottom: 5rem;
             }
@@ -1998,6 +2091,12 @@
                                 <div class="ico"><i class="fas fa-camera"></i></div>
                                 <div class="num">7</div>
                                 <div class="lbl">Proyek Foto</div>
+                            </div>
+                            <div class="stat-card"
+                                style="grid-column:1/-1;background:var(--accent-dim);border-color:var(--accent-border)">
+                                <div class="ico"><i class="fas fa-award" style="color:var(--accent)"></i></div>
+                                <div class="num">27<span class="unit">JP</span></div>
+                                <div class="lbl">Total Jam Pelatihan Mandiri</div>
                             </div>
                         </div>
                     </div>
@@ -2179,7 +2278,10 @@
                     <p class="section-desc">Berikut beberapa proyek yang telah saya kerjakan dengan dedikasi dan
                         semangat.</p>
                 </div>
-                <div class="projects-grid" style="margin-top:2.5rem">
+
+                <!-- ── Web Development Projects ── -->
+                <div class="proj-sub-label reveal"><i class="fas fa-code"></i> Web Development</div>
+                <div class="projects-grid">
                     <div class="proj-card reveal">
                         <div class="proj-img"><img src="images/project1.png" alt="TOPANG">
                             <div class="ov"></div>
@@ -2194,20 +2296,6 @@
                         </div>
                     </div>
                     <div class="proj-card reveal">
-                        <div class="proj-img"><img src="images/WhatsApp Image 2025-08-05 at 10.32.53_a2ed3283.jpg"
-                                alt="Network">
-                            <div class="ov"></div>
-                        </div>
-                        <div class="proj-body">
-                            <h3>Setup Hotspot Mikrotik 1 SSID dan Failover ISP</h3>
-                            <p>Pemasangan infrastruktur jaringan untuk Balai PU menggunakan router, switch, dan access
-                                point yang dikelola melalui Ruijie Cloud.</p>
-                            <div class="proj-tags"><span>Router</span><span>Switch</span><span>Access Point</span></div>
-                            <div class="proj-actions"><a href="#" class="primary"><i
-                                        class="fas fa-external-link-alt"></i> Lihat</a></div>
-                        </div>
-                    </div>
-                    <div class="proj-card reveal">
                         <div class="proj-img"><img src="images/transkom.png" alt="Network">
                             <div class="ov"></div>
                         </div>
@@ -2218,6 +2306,61 @@
                             <div class="proj-tags"><span>Laravel</span><span>Tailwind</span><span>MySQL</span></div>
                             <div class="proj-actions"><a href="https://transkom.bapekom6sby.com" class="primary"
                                     target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Network & Infrastructure Projects ── -->
+                <div class="proj-sub-label reveal"><i class="fas fa-network-wired"></i> Network &amp; Infrastructure
+                </div>
+                <div class="projects-grid">
+                    <!-- Project 4: Failover Network -->
+                    <div class="proj-card reveal">
+                        <div class="proj-icon-header">
+                            <div class="proj-glow teal"></div>
+                            <div class="proj-icon-circle teal"><i class="fas fa-random"></i></div>
+                        </div>
+                        <div class="proj-body">
+                            <h3>Multi-ISP Failover Network</h3>
+                            <p>Implementasi jaringan multi-ISP dengan mekanisme failover otomatis pada MikroTik,
+                                memastikan konektivitas tetap berjalan saat salah satu link terputus. Konfigurasi
+                                mencakup recursive routing, gateway monitoring, dan pengujian failover secara berkala
+                                untuk menjamin keandalan sistem.</p>
+                            <div class="proj-tags"><span>MikroTik</span><span>Routing</span><span>Failover</span></div>
+                        </div>
+                    </div>
+                    <!-- Project 5: VLAN & Hotspot -->
+                    <div class="proj-card reveal">
+                        <div class="proj-icon-header">
+                            <div class="proj-glow blue"></div>
+                            <div class="proj-icon-circle blue"><i class="fas fa-sitemap"></i></div>
+                        </div>
+                        <div class="proj-body">
+                            <h3>VLAN Segmentation &amp; Unified Hotspot</h3>
+                            <p>Segmentasi jaringan menggunakan VLAN per ruangan dan divisi untuk meningkatkan keamanan
+                                serta efisiensi manajemen lalu lintas data. Diintegrasikan dengan sistem hotspot
+                                terpusat — satu login berlaku untuk seluruh area gedung melalui konfigurasi roaming
+                                antar access point.</p>
+                            <div class="proj-tags">
+                                <span>VLAN</span><span>Hotspot</span><span>Router</span><span>Switch</span><span>Access
+                                    Point</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 6: Monitoring & Virtualisasi -->
+                    <div class="proj-card reveal">
+                        <div class="proj-icon-header">
+                            <div class="proj-glow amber"></div>
+                            <div class="proj-icon-circle amber"><i class="fas fa-chart-line"></i></div>
+                        </div>
+                        <div class="proj-body">
+                            <h3>Network Monitoring &amp; Virtualization</h3>
+                            <p>Deployment Zabbix sebagai platform monitoring real-time untuk seluruh perangkat jaringan
+                                dan server, berjalan di atas infrastruktur virtual Proxmox VE. Sistem memberikan
+                                notifikasi otomatis saat terjadi anomali, serta menyediakan dashboard performa dan
+                                analisis trafik secara terpusat.</p>
+                            <div class="proj-tags"><span>Zabbix</span><span>Proxmox
+                                    VE</span><span>Monitoring</span><span>Virtualization</span></div>
                         </div>
                     </div>
                 </div>
@@ -2235,9 +2378,23 @@
                 </div>
 
                 <h3 class="reveal"
-                    style="font-family:var(--font-d);font-size:1rem;font-weight:600;color:var(--accent);margin-top:2.5rem;margin-bottom:1.25rem;letter-spacing:.04em;text-transform:uppercase">
-                    <i class="fas fa-certificate" style="margin-right:.4rem"></i>Sertifikat</h3>
+                    style="font-family:var(--font-d);font-size:1rem;font-weight:600;color:var(--accent);margin-top:2.5rem;margin-bottom:1.25rem;letter-spacing:.04em;text-transform:uppercase;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+                    <span><i class="fas fa-certificate" style="margin-right:.4rem"></i>Sertifikat</span>
+                    <span
+                        style="display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .85rem;background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:100px;font-size:.72rem;font-weight:600;color:var(--accent);letter-spacing:.03em;text-transform:uppercase"><i
+                            class="fas fa-award" style="font-size:.65rem"></i>Total Bounty 32 JP</span>
+                </h3>
                 <div class="gallery-grid">
+                    <div class="gallery-item reveal">
+                        <img src="images/Sertifikat Magang Berdampak 2025 -Luqmanul_page-0001.jpg"
+                            alt="Magang Berdampak">
+                        <div class="cert-badge">Sertifikat</div>
+                        <div class="cap">
+                            <div>
+                                <div class="cap-text">Sertifikat Magang Berdampak 2025</div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="gallery-item reveal">
                         <img src="images/Sertifikat_LUQMANUL ASYRARIL MUBIN_Junior Network Administrator_page-0001.jpg"
                             alt="JNA Certificate">
@@ -2256,52 +2413,79 @@
                         <div class="cert-badge">Sertifikat</div>
                         <div class="cap">
                             <div>
-                                <div class="cap-text">Pola Pikir Digital</div>
+                                <div class="cap-text">Pengantar Mindset Digital</div>
                                 <div style="font-size:.72rem;color:var(--text-3);margin-top:.2rem">ID: 2299815850-9885
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="gallery-item reveal">
-                        <img src="images/Sertifikat Magang Berdampak 2025 -Luqmanul_page-0001.jpg"
-                            alt="Magang Berdampak">
+                        <img src="images/Sertifikat_LUQMANUL ASYRARIL MUBIN_Introduction to Cyber Security and Career Awareness_Page1.png"
+                            alt="Digital Mindset">
                         <div class="cert-badge">Sertifikat</div>
                         <div class="cap">
                             <div>
-                                <div class="cap-text">Sertifikat Magang Berdampak 2025</div>
+                                <div class="cap-text">Introduction to Cyber Security and Career Awareness</div>
+                                <div style="font-size:.72rem;color:var(--text-3);margin-top:.2rem">ID: 2299734850-22665
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item reveal">
+                        <img src="images/Sertifikat_LUQMANUL ASYRARIL MUBIN_Fasilitasi Pandu Literasi Digital segmen Masyarakat Umum_Page1.png"
+                            alt="Digital Mindset">
+                        <div class="cert-badge">Sertifikat</div>
+                        <div class="cap">
+                            <div>
+                                <div class="cap-text">Fasilitasi Pandu Literasi Digital</div>
+                                <div style="font-size:.72rem;color:var(--text-3);margin-top:.2rem">ID: 22611410850-263
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item reveal">
+                    <img src="images/Sertifikat_LUQMANUL ASYRARIL MUBIN_Ethical Hacker For Dummies_Page1.png"
+                        alt="Digital Mindset">
+                    <div class="cert-badge">Sertifikat</div>
+                    <div class="cap">
+                        <div>
+                            <div class="cap-text">Ethical Hacker For Dummies</div>
+                            <div style="font-size:.72rem;color:var(--text-3);margin-top:.2rem">ID: 22910030850-10405
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <h3 class="reveal"
-                    style="font-family:var(--font-d);font-size:1rem;font-weight:600;color:var(--accent);margin-top:2.5rem;margin-bottom:1.25rem;letter-spacing:.04em;text-transform:uppercase">
-                    <i class="fas fa-images" style="margin-right:.4rem"></i>Dokumentasi</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item reveal"><img src="images/gallery1.jpg" alt="Presentasi">
-                        <div class="cap">
-                            <div class="cap-text">Presentasi Sistem Manajemen Berbasis Web</div>
-                        </div>
-                    </div>
-                    <div class="gallery-item reveal"><img src="images/gallery2.png" alt="Sertifikat JNA">
-                        <div class="cap">
-                            <div class="cap-text">Penerimaan Sertifikat Junior Network Administrator</div>
-                        </div>
-                    </div>
-                    <div class="gallery-item reveal"><img src="images/gallery3.jpg" alt="PU Mengajar">
-                        <div class="cap">
-                            <div class="cap-text">Asrod PU Mengajar di SMAN 21 Surabaya UNESA</div>
-                        </div>
-                    </div>
-                    <div class="gallery-item reveal"><img src="images/gallery4.jpg" alt="Offboarding">
-                        <div class="cap">
-                            <div class="cap-text">Offboarding Magang Berdampak 2025</div>
-                        </div>
-                    </div>
-                    <div class="gallery-soon reveal"><i class="fas fa-plus"></i>
-                        <p>Segera hadir</p>
+            <h3 class="reveal"
+                style="font-family:var(--font-d);font-size:1rem;font-weight:600;color:var(--accent);margin-top:2.5rem;margin-bottom:1.25rem;letter-spacing:.04em;text-transform:uppercase">
+                <i class="fas fa-images" style="margin-right:.4rem"></i>Dokumentasi
+            </h3>
+            <div class="gallery-grid">
+                <div class="gallery-item reveal"><img src="images/gallery1.jpg" alt="Presentasi">
+                    <div class="cap">
+                        <div class="cap-text">Presentasi Sistem Manajemen Berbasis Web</div>
                     </div>
                 </div>
+                <div class="gallery-item reveal"><img src="images/gallery2.png" alt="Sertifikat JNA">
+                    <div class="cap">
+                        <div class="cap-text">Penerimaan Sertifikat Junior Network Administrator</div>
+                    </div>
+                </div>
+                <div class="gallery-item reveal"><img src="images/gallery3.jpg" alt="PU Mengajar">
+                    <div class="cap">
+                        <div class="cap-text">Asrod PU Mengajar di SMAN 21 Surabaya UNESA</div>
+                    </div>
+                </div>
+                <div class="gallery-item reveal"><img src="images/gallery4.jpg" alt="Offboarding">
+                    <div class="cap">
+                        <div class="cap-text">Offboarding Magang Berdampak 2025</div>
+                    </div>
+                </div>
+                <div class="gallery-soon reveal"><i class="fas fa-plus"></i>
+                    <p>Segera hadir</p>
+                </div>
+            </div>
             </div>
         </section>
 
